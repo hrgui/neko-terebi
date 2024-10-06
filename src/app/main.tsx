@@ -1,5 +1,5 @@
 // to get @tanstack/react-query to work
-import "./polyfills/patchHeaders";
+import "./polyfills/patchHeaders.ts";
 import "abortcontroller-polyfill";
 
 import { StrictMode } from "react";
