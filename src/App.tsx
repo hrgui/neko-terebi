@@ -1,8 +1,7 @@
-import "./App.css";
 import { AppProvider } from "./AppProvider";
 
 function App() {
-  return <AppProvider></AppProvider>;
+  return <AppProvider />;
 }
 
 export default App;
