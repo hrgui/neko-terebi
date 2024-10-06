@@ -3,6 +3,7 @@ import "../src/app/index.css";
 
 const preview: Preview = {
   parameters: {
+    layout: "fullscreen",
     options: {
       storySort: {
         method: "alphabetical",
