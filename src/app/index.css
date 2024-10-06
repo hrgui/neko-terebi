@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* enforces a 16:9 aspect ratio */
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 :focus {
   outline: none;
   background: pink;
