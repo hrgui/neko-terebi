@@ -2,5 +2,8 @@
   "name": "@hrgui/neko-terebi-app",
   "version": "0.0.0",
   "type": "module",
-  "main": "./main.tsx"
+  "main": "./main.tsx",
+  "dependencies": {
+    "@hrgui/neko-terebi-error-page": "*"
+  }
 }
