@@ -1,8 +1,12 @@
 {
-  "name": "neko-terebi",
+  "name": "@hrgui/neko-terebi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
