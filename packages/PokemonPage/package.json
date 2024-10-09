@@ -1,0 +1,6 @@
+{
+  "name": "@hrgui/neko-terebi-pokemon-page",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./PokemonPage.tsx"
+}

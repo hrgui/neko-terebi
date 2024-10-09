@@ -1,6 +1,6 @@
 import { createHashRouter, redirect } from "react-router-dom";
 import { Root } from "./Root";
-import { PokemonPage } from "./pages/PokemonPage";
+import { PokemonPage } from "@hrgui/neko-terebi-pokemon-page";
 import ErrorPage from "@hrgui/neko-terebi-error-page";
 import { pokemonLoader } from "./loaders/pokemonLoader";
 import { queryClient } from "./queryClient";
