@@ -1,19 +1,16 @@
 import { queryOptions } from "@tanstack/react-query";
-import eventEmitter from "../events/eventEmitter";
+import { fetchAsEventsToPromise } from "@hrgui/neko-terebi-api-eda-client/fetchAsEventsToPromise";
+import { FetchEvents } from "@hrgui/neko-terebi-api-eda-client/FetchEvents";
 
 export const pokemonLoaderQuery = (id: number) =>
   queryOptions({
     queryKey: ["pokemon", id],
     queryFn: async () => {
-      const promise = new Promise((resolve, reject) =>
-        eventEmitter.once("POKEMON_OBTAINED", (pokemon) => {
-          resolve(pokemon);
-        })
-      );
-
-      eventEmitter.emit("FETCH_POKEMON", id);
-
-      return promise;
+      return fetchAsEventsToPromise({
+        fetchEventName: FetchEvents.fetchPokemon,
+        responseEventName: FetchEvents.pokemonResponse,
+        props: [id],
+      });
     },
   });
 
