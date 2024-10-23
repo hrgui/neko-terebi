@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import "../src/app/index.css";
+import "@hrgui/neko-terebi-app/index.css";
 
 const preview: Preview = {
   parameters: {
