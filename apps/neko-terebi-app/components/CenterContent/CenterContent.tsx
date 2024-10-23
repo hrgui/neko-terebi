@@ -1,3 +1,4 @@
+import React, { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
@@ -5,12 +6,12 @@ type Props = {
   className?: string;
 };
 
-const CenterContent = ({ children, className }: Props) => {
+const CenterContent = forwardRef<HTMLDivElement, Props>(({ children, className }, ref) => {
   return (
-    <div className={twMerge(`flex items-center justify-center h-screen`, className)}>
+    <div ref={ref} className={twMerge(`flex items-center justify-center h-screen`, className)}>
       {children}
     </div>
   );
-};
+});
 
 export default CenterContent;

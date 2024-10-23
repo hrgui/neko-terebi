@@ -4,6 +4,7 @@
   "type": "module",
   "main": "./main.tsx",
   "dependencies": {
-    "@hrgui/neko-terebi-error-page": "*"
+    "@hrgui/neko-terebi-error-page": "*",
+    "@noriginmedia/norigin-spatial-navigation": "^2.2.1"
   }
 }

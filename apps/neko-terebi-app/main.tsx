@@ -2,15 +2,22 @@
 import "./polyfills/patchHeaders.ts";
 import "abortcontroller-polyfill";
 
-import { init } from "@hrgui/neko-terebi-api-eda-client";
+import { init as setupApiEdaClient } from "@hrgui/neko-terebi-api-eda-client";
 import { StrictMode } from "react";
 import { Container, createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { createRouter } from "./router.tsx";
+import { init as setupSpatialNavigation } from "@noriginmedia/norigin-spatial-navigation";
 
 export function bootstrap(el: Container) {
-  init();
+  setupApiEdaClient();
+  setupSpatialNavigation({
+    debug: import.meta.env.VITE_NEKO_SPATIAL_NAV_DEBUG === "1",
+    visualDebug: import.meta.env.VITE_NEKO_SPATIAL_NAV_DEBUG === "1",
+    shouldUseNativeEvents: true,
+    shouldFocusDOMNode: true,
+  });
   const router = createRouter();
   createRoot(el).render(
     <StrictMode>
