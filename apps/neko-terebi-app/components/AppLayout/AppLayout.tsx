@@ -8,7 +8,7 @@ type Props = {
 
 const AppLayout = ({ children }: Props) => {
   return (
-    <CenterContent className="bg-black">
+    <CenterContent className="bg-gray-900">
       <MainContainer>{children}</MainContainer>
     </CenterContent>
   );
