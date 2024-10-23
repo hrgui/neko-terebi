@@ -36,7 +36,7 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
         <FocusableLink
           focusKey="prev"
           className="text-blue-500/100"
-          focusClassName="bg-red-500/100"
+          focusClassName="bg-blue-500/100 text-white/100"
           to={`/${prev}`}
         >
           &laquo;
@@ -47,7 +47,7 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
         focusKey="next"
         to={`/${next}`}
         className="text-blue-500/100"
-        focusClassName="bg-red-500/100"
+        focusClassName="bg-blue-500/100 text-white/100"
       >
         &raquo;
       </FocusableLink>
