@@ -1,6 +1,6 @@
 import eventEmitter from "./eventEmitter";
 
-export const fetchAsEventsToPromise = async function <T>({
+export const fetchAsEventsToPromise = async function ({
   fetchEventName,
   responseEventName,
   props,
