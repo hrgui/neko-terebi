@@ -8,7 +8,7 @@ type Props = {
 
 const AppLayout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   return (
-    <CenterContent ref={ref} className="bg-gray-900">
+    <CenterContent ref={ref} className="bg-gray-900/100">
       <MainContainer>{children}</MainContainer>
     </CenterContent>
   );
