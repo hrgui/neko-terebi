@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "src/**"
+      - "packages/**"
+      - "apps/**"
       - "public/**"
       - ".github/workflows/**"
       - "package.json"
