@@ -7,13 +7,14 @@ export interface FocusableLinkProps {
   focusClassName?: string;
 }
 
-export function FocusableLink(props: LinkProps & FocusableLinkProps) {
-  const { ref, focused } = useFocusable({ focusKey: props.focusKey });
+export function FocusableLink({
+  focusKey,
+  focusClassName,
+  className,
+  ...props
+}: LinkProps & FocusableLinkProps) {
+  const { ref, focused } = useFocusable({ focusKey: focusKey });
   return (
-    <Link
-      {...props}
-      ref={ref}
-      className={twMerge(props.className, focused ? props.focusClassName : "")}
-    />
+    <Link {...props} ref={ref} className={twMerge(className, focused ? focusClassName : "")} />
   );
 }
