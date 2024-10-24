@@ -60,7 +60,7 @@ export function PokemonPage() {
   const { pokemon } = useLoaderData() as { pokemon: IPokemon };
 
   useEffect(() => {
-    setFocus("prev");
+    setFocus("next");
   }, []);
 
   return (
