@@ -46,7 +46,6 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
 }
 
 export function PokemonPage() {
-  console.log("pokemon page");
   const { pokemon } = useLoaderData() as { pokemon: IPokemon };
 
   useEffect(() => {
