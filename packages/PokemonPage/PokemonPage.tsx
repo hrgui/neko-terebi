@@ -9,7 +9,8 @@ export function PokemonView({ name, img, id }: { name: string; img: string; id: 
     <div className="flex flex-col justify-center items-center">
       <img src={img} className="w-80 h-80" />
       <h1 className="text-4xl font-semibold mb-2">
-        #{id} {name}
+        <span>#{id}</span>
+        <span>{name}</span>
       </h1>
     </div>
   );
@@ -45,6 +46,7 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
 }
 
 export function PokemonPage() {
+  console.log("pokemon page");
   const { pokemon } = useLoaderData() as { pokemon: IPokemon };
 
   useEffect(() => {

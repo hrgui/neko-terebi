@@ -7,8 +7,10 @@ import { StrictMode } from "react";
 import { Container, createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { createRouter } from "./router.tsx";
+
 import { init as setupSpatialNavigation } from "@noriginmedia/norigin-spatial-navigation";
+import { createHashRouter } from "react-router-dom";
+import { createRouterConfig } from "./createRouterConfig.tsx";
 
 export function bootstrap(el: Container) {
   setupApiEdaClient();
@@ -18,7 +20,7 @@ export function bootstrap(el: Container) {
     shouldUseNativeEvents: true,
     shouldFocusDOMNode: true,
   });
-  const router = createRouter();
+  const router = createHashRouter(createRouterConfig());
   createRoot(el).render(
     <StrictMode>
       <App router={router} />
