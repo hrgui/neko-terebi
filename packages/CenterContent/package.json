@@ -3,5 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "main": "./CenterContent.tsx",
-  "dependencies": {}
+  "peerDependencies": {
+    "tailwind-merge": "*"
+  }
 }

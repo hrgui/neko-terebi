@@ -2,5 +2,8 @@
   "name": "@hrgui/neko-terebi-error-page",
   "version": "0.0.0",
   "type": "module",
-  "main": "./ErrorPage.tsx"
+  "main": "./ErrorPage.tsx",
+  "peerDependencies": {
+    "react-router-dom": "^6.26.2"
+  }
 }

@@ -3,5 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "main": "./AppLayout.tsx",
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {
+    "@hrgui/neko-terebi-react-component-center-content": "*",
+    "@hrgui/neko-terebi-react-component-main-container": "*"
+  }
 }
