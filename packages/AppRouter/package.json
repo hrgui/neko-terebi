@@ -1,0 +1,10 @@
+{
+  "name": "@hrgui/neko-terebi-app-router",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./createRouterConfig.tsx",
+  "dependencies": {
+    "@hrgui/neko-terebi-error-page": "*",
+    "@noriginmedia/norigin-spatial-navigation": "^2.2.1"
+  }
+}

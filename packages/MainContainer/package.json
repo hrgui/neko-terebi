@@ -1,0 +1,7 @@
+{
+  "name": "@hrgui/neko-terebi-react-component-main-container",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./MainContainer.tsx",
+  "dependencies": {}
+}

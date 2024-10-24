@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
-import CenterContent from "../CenterContent/CenterContent";
-import MainContainer from "../MainContainer/MainContainer";
+import CenterContent from "@hrgui/neko-terebi-react-component-center-content";
+import MainContainer from "@hrgui/neko-terebi-react-component-main-container";
 
 type Props = {
   children?: React.ReactNode;

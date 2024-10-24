@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router";
-import LoadingOverlay from "./components/Loading/LoadingOverlay";
-import AppLayout from "./components/AppLayout/AppLayout";
+import LoadingOverlay from "@hrgui/neko-terebi-react-component-loading";
+import AppLayout from "@hrgui/neko-terebi-react-component-app-layout";
 import { FocusContext, useFocusable } from "@noriginmedia/norigin-spatial-navigation";
 
 export function Root() {

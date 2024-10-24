@@ -1,0 +1,7 @@
+{
+  "name": "@hrgui/neko-terebi-react-component-center-content",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./CenterContent.tsx",
+  "dependencies": {}
+}

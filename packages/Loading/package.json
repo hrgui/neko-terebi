@@ -1,0 +1,7 @@
+{
+  "name": "@hrgui/neko-terebi-react-component-loading",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./LoadingOverlay.tsx",
+  "dependencies": {}
+}

@@ -1,0 +1,7 @@
+{
+  "name": "@hrgui/neko-terebi-pokemon-single-loader",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./pokemonLoader.ts",
+  "dependencies": {}
+}

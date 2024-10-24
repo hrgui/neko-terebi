@@ -1,9 +1,9 @@
 import { redirect } from "react-router-dom";
-import { Root } from "./Root";
+import { Root } from "@hrgui/neko-terebi-react-component-app-root";
 import { PokemonPage } from "@hrgui/neko-terebi-pokemon-page";
 import ErrorPage from "@hrgui/neko-terebi-error-page";
-import { pokemonLoader } from "./loaders/pokemonLoader";
-import { queryClient } from "./queryClient";
+import { pokemonLoader } from "@hrgui/neko-terebi-pokemon-single-loader";
+import { queryClient } from "@hrgui/neko-terebi-query-client";
 
 export function createRouterConfig() {
   return [

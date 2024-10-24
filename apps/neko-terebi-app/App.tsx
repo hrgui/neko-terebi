@@ -1,5 +1,5 @@
-import { AppProvider } from "./AppProvider";
-import type { Props } from "./AppProvider";
+import { AppProvider } from "@hrgui/neko-terebi-react-component-app-provider";
+import type { Props } from "@hrgui/neko-terebi-react-component-app-provider";
 
 function App({ router }: { router: Props["router"] }) {
   return <AppProvider router={router} />;

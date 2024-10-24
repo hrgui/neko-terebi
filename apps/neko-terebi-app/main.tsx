@@ -10,7 +10,7 @@ import "./index.css";
 
 import { init as setupSpatialNavigation } from "@noriginmedia/norigin-spatial-navigation";
 import { createHashRouter } from "react-router-dom";
-import { createRouterConfig } from "./createRouterConfig.tsx";
+import { createRouterConfig } from "@hrgui/neko-terebi-app-router";
 
 export function bootstrap(el: Container) {
   setupApiEdaClient();
