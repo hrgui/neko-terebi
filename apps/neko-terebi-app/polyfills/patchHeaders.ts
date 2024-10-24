@@ -14,7 +14,7 @@
     try {
       new window.Headers(undefined);
     } catch (_) {
-      console.debug("patch 'Headers' to accept 'undefined'");
+      console.debug("patch 'Headers' to accept 'undefined'", _);
 
       const _Headers = window.Headers;
 
