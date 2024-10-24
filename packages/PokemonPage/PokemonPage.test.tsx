@@ -2,7 +2,7 @@ import { test, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter } from "react-router-dom";
 import { createRouterConfig } from "@hrgui/neko-terebi-app-router";
-import { AppProvider } from "@hrgui/neko-terebi-app/AppProvider";
+import { AppProvider } from "@hrgui/neko-terebi-react-component-app-provider";
 import eventEmitter from "@hrgui/neko-terebi-api-eda-client/eventEmitter";
 import { FetchEvents } from "@hrgui/neko-terebi-api-eda-client/FetchEvents";
 
