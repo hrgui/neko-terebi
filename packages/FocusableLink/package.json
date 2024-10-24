@@ -1,0 +1,11 @@
+{
+  "name": "@hrgui/neko-terebi-react-comp-focusable-link",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./FocusableLink.tsx",
+  "peerDependencies": {
+    "react-router-dom": "*",
+    "tailwind-merge": "*",
+    "@noriginmedia/norigin-spatial-navigation": "*"
+  }
+}

@@ -1,9 +1,8 @@
 import { useLoaderData } from "react-router";
-import { useFocusable, setFocus } from "@noriginmedia/norigin-spatial-navigation";
-
-import { Link } from "react-router-dom";
+import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
 import { useEffect } from "react";
 import type { IPokemon } from "pokeapi-typescript";
+import { FocusableLink } from "@hrgui/neko-terebi-react-comp-focusable-link";
 
 export function PokemonView({ name, img, id }: { name: string; img: string; id: number }) {
   return (
@@ -13,17 +12,6 @@ export function PokemonView({ name, img, id }: { name: string; img: string; id: 
         #{id} {name}
       </h1>
     </div>
-  );
-}
-
-export function FocusableLink(props: any) {
-  const { ref, focused } = useFocusable({ focusKey: props.focusKey });
-  return (
-    <Link
-      {...props}
-      ref={ref}
-      className={`${props.className} ${focused ? props.focusClassName : ""}`}
-    />
   );
 }
 
