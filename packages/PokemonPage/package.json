@@ -2,5 +2,8 @@
   "name": "@hrgui/neko-terebi-pokemon-page",
   "version": "0.0.0",
   "type": "module",
-  "main": "./PokemonPage.tsx"
+  "main": "./PokemonPage.tsx",
+  "devDependencies": {
+    "pokeapi-typescript": "^2.1.0"
+  }
 }

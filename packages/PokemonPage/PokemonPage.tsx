@@ -3,6 +3,7 @@ import { useFocusable, setFocus } from "@noriginmedia/norigin-spatial-navigation
 
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import type { IPokemon } from "pokeapi-typescript";
 
 export function PokemonView({ name, img, id }: { name: string; img: string; id: number }) {
   return (
@@ -56,8 +57,7 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
 }
 
 export function PokemonPage() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { pokemon } = useLoaderData() as any;
+  const { pokemon } = useLoaderData() as { pokemon: IPokemon };
 
   useEffect(() => {
     setFocus("prev");
