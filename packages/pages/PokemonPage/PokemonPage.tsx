@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router";
 import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
 import { useEffect } from "react";
 import type { IPokemon } from "pokeapi-typescript";
-import { FocusableLink } from "@hrgui/neko-terebi-react-comp-focusable-link";
+import { FocusableLink } from "../../components/FocusableLink/FocusableLink";
 
 export function PokemonView({ name, img, id }: { name: string; img: string; id: number }) {
   return (

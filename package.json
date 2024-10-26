@@ -5,9 +5,14 @@
   "type": "module",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/client/*",
+    "packages/components/*",
+    "packages/pages/*",
+    "packages/queries/*",
+    "packages/router/*"
   ],
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "test": "vitest",
     "build": "tsc -b && vite build",

@@ -1,0 +1,6 @@
+{
+  "name": "@hrgui/neko-terebi-history-page",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./HistoryPage.tsx"
+}

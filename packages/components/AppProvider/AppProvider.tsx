@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@hrgui/neko-terebi-query-client";
+import { queryClient } from "../../queries/QueryClient/queryClient";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
 export type Props = {

@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 import { createMemoryRouter } from "react-router-dom";
 import { createRouterConfig } from "@hrgui/neko-terebi-app-router";
 import { AppProvider } from "@hrgui/neko-terebi-react-component-app-provider";
-import eventEmitter from "@hrgui/neko-terebi-api-eda-client/eventEmitter";
-import { FetchEvents } from "@hrgui/neko-terebi-api-eda-client/FetchEvents";
+import eventEmitter from "../../client/ApiClient/eventEmitter";
+import { FetchEvents } from "../../client/ApiClient/FetchEvents";
 
 test("should get a pokemon1 rendered", async () => {
   //arrange

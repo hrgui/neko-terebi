@@ -2,7 +2,7 @@
 import "./polyfills/patchHeaders.ts";
 import "abortcontroller-polyfill";
 
-import { init as setupApiEdaClient } from "@hrgui/neko-terebi-api-eda-client";
+import { init as setupApiEdaClient } from "../../packages/client/ApiClient/index.ts";
 import { StrictMode } from "react";
 import { Container, createRoot } from "react-dom/client";
 import App from "./App.tsx";

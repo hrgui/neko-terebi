@@ -1,0 +1,6 @@
+{
+  "name": "@hrgui/neko-terebi-series-page",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./SeriesPage.tsx"
+}
