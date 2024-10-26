@@ -25,7 +25,7 @@ test("should get a pokemon1 rendered", async () => {
   });
 
   //act
-  const router = createMemoryRouter(createRouterConfig(), { initialEntries: ["/1"] });
+  const router = createMemoryRouter(createRouterConfig(), { initialEntries: ["/pokemon/1"] });
   render(<AppProvider router={router} />);
 
   //assert
