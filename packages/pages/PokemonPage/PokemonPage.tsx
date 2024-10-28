@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router";
-import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
 import { useEffect } from "react";
 import type { IPokemon } from "pokeapi-typescript";
 import { FocusableLink } from "../../components/FocusableLink/FocusableLink";
+import { useSetFocus } from "@please/lrud";
 
 export function PokemonView({ name, img, id }: { name: string; img: string; id: number }) {
   return (
@@ -47,10 +47,11 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
 
 export function PokemonPage() {
   const { pokemon } = useLoaderData() as { pokemon: IPokemon };
+  const setFocus = useSetFocus();
 
   useEffect(() => {
     setFocus("next");
-  }, []);
+  }, [setFocus]);
 
   return (
     <div className="absolute w-full h-full flex items-center justify-center">

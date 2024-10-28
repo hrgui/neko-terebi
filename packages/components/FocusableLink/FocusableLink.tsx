@@ -1,6 +1,5 @@
-import { Link, LinkProps } from "react-router-dom";
-import { twMerge } from "tailwind-merge";
-import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
+import { FocusNode } from "@please/lrud";
+import { Link, LinkProps, useNavigate } from "react-router-dom";
 
 export interface FocusableLinkProps {
   focusKey?: string;
@@ -8,13 +7,23 @@ export interface FocusableLinkProps {
 }
 
 export function FocusableLink({
-  focusKey,
   focusClassName,
-  className,
+  focusKey,
+  to,
   ...props
 }: LinkProps & FocusableLinkProps) {
-  const { ref, focused } = useFocusable({ focusKey: focusKey });
+  const navigate = useNavigate();
+
   return (
-    <Link {...props} ref={ref} className={twMerge(className, focused ? focusClassName : "")} />
+    <FocusNode
+      onSelected={() => {
+        navigate(to);
+      }}
+      focusId={focusKey}
+      className="text-white/100"
+      focusedClass={focusClassName}
+    >
+      <Link to={to} {...props} />
+    </FocusNode>
   );
 }

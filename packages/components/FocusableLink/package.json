@@ -5,7 +5,6 @@
   "main": "./FocusableLink.tsx",
   "peerDependencies": {
     "react-router-dom": "*",
-    "tailwind-merge": "*",
-    "@noriginmedia/norigin-spatial-navigation": "*"
+    "tailwind-merge": "*"
   }
 }
