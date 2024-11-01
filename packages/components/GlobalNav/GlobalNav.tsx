@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 import { FocusableLink } from "../FocusableLink/FocusableLink";
 import { setFocus, useFocusable, FocusContext } from "@noriginmedia/norigin-spatial-navigation";
+import { twMerge } from "tailwind-merge";
 
 const GlobalNav = () => {
-  const { ref, focusKey } = useFocusable({
+  const { ref, focusKey, hasFocusedChild, focused } = useFocusable({
+    focusKey: "menu",
     isFocusBoundary: true,
+    trackChildren: true,
     focusBoundaryDirections: ["up", "down"],
   });
+
+  const isFocused = hasFocusedChild || focused;
 
   useEffect(() => {
     setFocus("global-nav-home");
@@ -16,14 +21,18 @@ const GlobalNav = () => {
     <FocusContext.Provider value={focusKey}>
       <div
         ref={ref}
-        className="flex flex-col text-cta font-semibold @asvw:w-[400px] @asvw:pl-[40px] h-full @asvw:pr-[40px] @asvw:pt-[40px] @asvw:pb-[40px]"
+        className={twMerge(
+          "flex flex-col text-cta font-semibold @asvw:pl-[40px] h-full @asvw:pr-[40px] @asvw:pt-[40px] @asvw:pb-[40px]",
+          !isFocused ? "@asvw:w-[160px]" : "@asvw:w-[400px]"
+        )}
       >
         <FocusableLink
           to="/home"
           className="flex items-center mb-auto w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">account_circle</span> User
+          <span className="material-symbols-outlined @asvw:mr-[10px]">account_circle</span>
+          {isFocused && <span>User</span>}
         </FocusableLink>
 
         <FocusableLink
@@ -32,7 +41,8 @@ const GlobalNav = () => {
           className="flex items-center  w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">search</span> Search
+          <span className="material-symbols-outlined @asvw:mr-[10px]">search</span>
+          {isFocused && <span>Search</span>}
         </FocusableLink>
         <FocusableLink
           focusKey="global-nav-home"
@@ -40,7 +50,8 @@ const GlobalNav = () => {
           className="flex items-center w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">home</span> Home
+          <span className="material-symbols-outlined @asvw:mr-[10px]">home</span>
+          {isFocused && <span>Home</span>}
         </FocusableLink>
         <FocusableLink
           focusKey="global-nav-watchlist"
@@ -48,7 +59,8 @@ const GlobalNav = () => {
           className="flex items-center w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">subscriptions</span> Watchlist
+          <span className="material-symbols-outlined @asvw:mr-[10px]">subscriptions</span>
+          {isFocused && <span>Watchlist</span>}
         </FocusableLink>
         <FocusableLink
           focusKey="global-nav-history"
@@ -56,7 +68,8 @@ const GlobalNav = () => {
           className="flex items-center w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">search_activity</span> History
+          <span className="material-symbols-outlined @asvw:mr-[10px]">search_activity</span>
+          {isFocused && <span>History</span>}
         </FocusableLink>
         <FocusableLink
           focusKey="global-nav-browse"
@@ -64,7 +77,8 @@ const GlobalNav = () => {
           className="flex items-center w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">web</span> Browse
+          <span className="material-symbols-outlined @asvw:mr-[10px]">web</span>
+          {isFocused && <span>Browse</span>}
         </FocusableLink>
 
         <FocusableLink
@@ -73,7 +87,8 @@ const GlobalNav = () => {
           className="flex items-center  w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">web</span> Pokemon
+          <span className="material-symbols-outlined @asvw:mr-[10px]">web</span>
+          {isFocused && <span>Pokemon</span>}
         </FocusableLink>
 
         <FocusableLink
@@ -82,7 +97,8 @@ const GlobalNav = () => {
           className="mt-auto flex items-center w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">settings</span> Settings
+          <span className="material-symbols-outlined @asvw:mr-[10px]">settings</span>
+          {isFocused && <span>Settings</span>}
         </FocusableLink>
       </div>
     </FocusContext.Provider>
