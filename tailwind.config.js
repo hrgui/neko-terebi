@@ -10,6 +10,9 @@ export default {
     "./packages/**/*.{js,ts,jsx,tsx,vue}",
   ],
   theme: {
+    fontFamily: {
+      sans: ['"Noto Sans"', "sans-serif"],
+    },
     colors: {
       // for black and white, we dont do an override on the opacity because we want to have opacity
       black: "#000000",
