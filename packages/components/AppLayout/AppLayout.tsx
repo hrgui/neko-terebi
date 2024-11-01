@@ -11,9 +11,11 @@ const AppLayout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   return (
     <CenterContent ref={ref} className="bg-gray-900/100">
       <MainContainer>
-        <div className="flex h-full">
+        <div className="flex h-full overflow-hidden">
           <GlobalNav />
-          <div className="@asvw:pt-[40px] @asvw:pr-[40px] w-full h-full">{children}</div>
+          <div className="@asvw:pt-[40px] @asvw:pr-[40px] w-full h-full flex-shrink-0 text-body-m font-semibold">
+            {children}
+          </div>
         </div>
       </MainContainer>
     </CenterContent>

@@ -22,8 +22,8 @@ const GlobalNav = () => {
       <div
         ref={ref}
         className={twMerge(
-          "flex flex-col text-cta font-semibold @asvw:pl-[40px] h-full @asvw:pr-[40px] @asvw:pt-[40px] @asvw:pb-[40px]",
-          !isFocused ? "@asvw:w-[160px]" : "@asvw:w-[400px]"
+          "flex flex-shrink-0 flex-col text-cta font-semibold @asvw:pl-[40px] h-full @asvw:pr-[40px] @asvw:pt-[40px] @asvw:pb-[40px]",
+          !isFocused ? "@asvw:w-[84px]" : "@asvw:w-[510px]"
         )}
       >
         <FocusableLink
