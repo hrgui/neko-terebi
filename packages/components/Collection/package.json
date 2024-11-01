@@ -1,0 +1,9 @@
+{
+  "name": "@hrgui/neko-terebi-react-component-collection",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./Collection.tsx",
+  "peerDependencies": {
+    "tailwind-merge": "*"
+  }
+}
