@@ -21,12 +21,12 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
   const next = id + 1;
 
   return (
-    <div className="text-3xl flex gap-2 justify-center items-center w-full">
+    <div className="text-headline-xl flex gap-2 justify-center items-center w-full">
       {prev > 0 && (
         <FocusableLink
           focusKey="prev"
-          className="text-blue-500/100"
-          focusClassName="bg-blue-500/100 text-white/100"
+          className="text-primary/100 @asvw:p-[10px] @asvw:rounded-[10px]"
+          focusClassName="bg-primary/100 text-white/100"
           to={`/pokemon/${prev}`}
         >
           &laquo;
@@ -36,8 +36,8 @@ export function PokemonNav({ id, children }: { id: number; children: React.React
       <FocusableLink
         focusKey="next"
         to={`/pokemon/${next}`}
-        className="text-blue-500/100"
-        focusClassName="bg-blue-500/100 text-white/100"
+        className="text-primary/100 @asvw:p-[10px] @asvw:rounded-[10px]"
+        focusClassName="bg-primary/100 text-white/100"
       >
         &raquo;
       </FocusableLink>
@@ -53,7 +53,7 @@ export function PokemonPage() {
   }, []);
 
   return (
-    <div className="absolute w-full h-full flex items-center justify-center">
+    <div className="relative w-full h-full flex items-center justify-center">
       <div>
         <PokemonNav id={pokemon.id}>
           <PokemonView name={pokemon.name} id={pokemon.id} img={pokemon.sprites.front_default} />
