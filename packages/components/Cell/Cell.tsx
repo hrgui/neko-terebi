@@ -10,7 +10,7 @@ export type Props = {
 
 const Cell = ({ focused, header1, header2, header3, imageUrl }: Props) => {
   return (
-    <div className="@asvw:w-[528px]">
+    <div className="@asvw:w-[528px] flex-shrink-0">
       <div
         className={twMerge(
           "w-full @asvw:h-[297px] bg-gray-700/100 @asvw:rounded-[26.4px]",
