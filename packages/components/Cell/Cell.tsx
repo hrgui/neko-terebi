@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-export type Props = {
+export type CellProps = {
   focused?: boolean;
   header1?: string;
   header2?: string;
@@ -9,7 +9,7 @@ export type Props = {
   imageUrl?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const Cell = forwardRef<HTMLDivElement, Props>(
+const Cell = forwardRef<HTMLDivElement, CellProps>(
   ({ focused, header1, header2, header3, imageUrl, className, ...rest }, ref) => {
     return (
       <div ref={ref} className={twMerge("@asvw:w-[528px] flex-shrink-0", className)} {...rest}>
@@ -27,10 +27,12 @@ const Cell = forwardRef<HTMLDivElement, Props>(
         ></div>
         <div className="w-full @asvw:h-[171px] @asvw:mt-[24px]">
           <div
-            className={twMerge(
-              "font-semibold text-gray-400/100 text-headline-s",
+            className={`${twMerge(
+              "font-semibold text-gray-400/100",
               focused && "text-gray-200/100"
             )}
+            ${focused ? "text-headline-s" : ""}
+            `}
           >
             {header1}
           </div>

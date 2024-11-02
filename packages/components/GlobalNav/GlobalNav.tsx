@@ -22,13 +22,13 @@ const GlobalNav = () => {
       <div
         ref={ref}
         className={twMerge(
-          "flex flex-shrink-0 flex-col text-cta font-semibold @asvw:pl-[40px] h-full @asvw:pr-[40px] @asvw:pt-[40px] @asvw:pb-[40px]",
+          "flex flex-shrink-0 flex-col text-cta font-semibold h-full @asvw:mr-[40px] @asvw:pt-[40px] @asvw:pb-[40px] @asvw:ml-[40px]",
           !isFocused ? "@asvw:w-[84px]" : "@asvw:w-[510px]"
         )}
       >
         <FocusableLink
           to="/home"
-          className="flex items-center @asvw:h-[72px] mb-auto w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="flex items-center @asvw:h-[72px] mb-auto w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">account_circle</span>
@@ -38,7 +38,7 @@ const GlobalNav = () => {
         <FocusableLink
           focusKey="global-nav-search"
           to="/search"
-          className="flex items-center @asvw:h-[72px] w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">search</span>
@@ -47,7 +47,7 @@ const GlobalNav = () => {
         <FocusableLink
           focusKey="global-nav-home"
           to="/home"
-          className="flex items-center @asvw:h-[72px] w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">home</span>
@@ -56,7 +56,7 @@ const GlobalNav = () => {
         <FocusableLink
           focusKey="global-nav-watchlist"
           to="/watchlist"
-          className="flex items-center @asvw:h-[72px] w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">subscriptions</span>
@@ -65,7 +65,7 @@ const GlobalNav = () => {
         <FocusableLink
           focusKey="global-nav-history"
           to="/history"
-          className="flex items-center @asvw:h-[72px] w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">search_activity</span>
@@ -74,7 +74,7 @@ const GlobalNav = () => {
         <FocusableLink
           focusKey="global-nav-browse"
           to="/browse"
-          className="flex items-center @asvw:h-[72px] w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">web</span>
@@ -84,7 +84,7 @@ const GlobalNav = () => {
         <FocusableLink
           focusKey="global-nav-pokemon"
           to="/pokemon/1"
-          className="flex items-center @asvw:h-[72px] w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">web</span>
@@ -94,7 +94,7 @@ const GlobalNav = () => {
         <FocusableLink
           focusKey="global-nav-settings"
           to="/settings"
-          className="mt-auto flex items-center @asvw:h-[72px] w-full @asvw:pl-[40px] @asvw:pt-[16px] @asvw:pb-[16px] @asvw:rounded-[10px]"
+          className="mt-auto flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
           focusClassName="bg-primary/100"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">settings</span>
