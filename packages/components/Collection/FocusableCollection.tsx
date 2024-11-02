@@ -10,6 +10,7 @@ const FocusableCollection = ({ focusKey: _focusKey, ...props }: FocusableCollect
     focusKey: _focusKey,
     isFocusBoundary: false,
     trackChildren: true,
+    focusable: true,
     focusBoundaryDirections: ["left", "right"],
   });
 

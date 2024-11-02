@@ -6,8 +6,11 @@ import { twMerge } from "tailwind-merge";
 const GlobalNav = () => {
   const { ref, focusKey, hasFocusedChild, focused } = useFocusable({
     focusKey: "menu",
-    isFocusBoundary: true,
+    focusable: true,
+    isFocusBoundary: false,
     trackChildren: true,
+    autoRestoreFocus: true,
+    onArrowPress: () => true,
     focusBoundaryDirections: ["up", "down"],
   });
 
@@ -22,8 +25,8 @@ const GlobalNav = () => {
       <div
         ref={ref}
         className={twMerge(
-          "flex flex-shrink-0 flex-col text-cta font-semibold h-full @asvw:mr-[40px] @asvw:pt-[40px] @asvw:pb-[40px] @asvw:ml-[40px]",
-          !isFocused ? "@asvw:w-[84px]" : "@asvw:w-[510px]"
+          "fixed flex flex-shrink-0 flex-col text-cta font-semibold h-full @asvw:mr-[40px] @asvw:pt-[40px] @asvw:pb-[40px] @asvw:pl-[40px]",
+          !isFocused ? "@asvw:w-[84px]" : "@asvw:w-[510px] bg-gray-900/100 @asvw:pr-[40px]"
         )}
       >
         <FocusableLink

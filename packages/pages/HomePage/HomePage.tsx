@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import FocusableCollection from "../../components/Collection/FocusableCollection";
+import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
 
 const HomePage = () => {
+  useEffect(() => {
+    setFocus("a");
+  }, []);
+
   return (
     <>
       <FocusableCollection focusKey="collection-1" header="Meowing for days">

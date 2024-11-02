@@ -13,7 +13,7 @@ const AppLayout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
       <MainContainer>
         <div className="flex h-full overflow-hidden">
           <GlobalNav />
-          <div className="@asvw:pt-[40px] @asvw:pr-[40px] w-full h-full flex-shrink-0 text-body-m font-semibold">
+          <div className="@asvw:pt-[40px] @asvw:pr-[40px] @asvw:ml-[170px] w-full h-full flex-shrink-0 text-body-m font-semibold">
             {children}
           </div>
         </div>
