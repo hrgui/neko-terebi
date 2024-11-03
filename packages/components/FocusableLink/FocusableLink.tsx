@@ -13,7 +13,19 @@ export function FocusableLink({
   className,
   ...props
 }: LinkProps & FocusableLinkProps) {
-  const { ref, focused } = useFocusable({ focusKey: focusKey });
+  const { ref, focused } = useFocusable({
+    focusKey: focusKey,
+    onEnterPress: () => {
+      const currentEl = ref.current as HTMLElement;
+
+      if (!currentEl) {
+        return;
+      }
+
+      currentEl.click();
+    },
+  });
+
   return (
     <Link {...props} ref={ref} className={twMerge(className, focused ? focusClassName : "")} />
   );
