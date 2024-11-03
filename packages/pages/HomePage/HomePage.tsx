@@ -38,6 +38,16 @@ const HomePage = () => {
           header3="14+"
           className="@asvw:mr-[26px]"
         />
+
+        <FocusableLinkCell
+          to="/"
+          focusKey="d"
+          imageUrl="https://placehold.co/528x297/FF0000/FFF"
+          header1="NEKO THE ROCK!"
+          header2="Sub | Dub"
+          header3="14+"
+          className="@asvw:mr-[26px]"
+        />
       </FocusableCollection>
 
       <FocusableCollection focusKey="collection-2" header="Meowing for days 2">
