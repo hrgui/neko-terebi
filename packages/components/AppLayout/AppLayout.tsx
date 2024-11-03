@@ -11,7 +11,7 @@ const AppLayout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   return (
     <CenterContent ref={ref} className="bg-gray-900/100">
       <MainContainer>
-        <div className="flex h-full overflow-hidden">
+        <div className="flex h-full overflow-x-hidden">
           <GlobalNav />
           <div className="@asvw:pt-[40px] @asvw:pr-[40px] @asvw:ml-[170px] w-full h-full flex-shrink-0 text-body-m font-semibold">
             {children}
