@@ -1,0 +1,9 @@
+{
+  "name": "@hrgui/neko-terebi-react-component-grid",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./Grid.tsx",
+  "peerDependencies": {
+    "tailwind-merge": "*"
+  }
+}

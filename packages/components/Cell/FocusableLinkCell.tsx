@@ -7,6 +7,7 @@ import { useEffect } from "react";
 type Props = {
   focusKey?: string;
   focusClassName?: string;
+  isGridCell?: boolean;
 } & LinkProps &
   CellProps;
 
@@ -26,6 +27,13 @@ function isCollectionInViewport(element: HTMLElement) {
   );
 }
 
+function isInRowViewport(element: HTMLElement) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+  );
+}
+
 const FocusableLinkCell = ({
   focusKey,
   className,
@@ -34,6 +42,7 @@ const FocusableLinkCell = ({
   header2,
   header3,
   imageUrl,
+  isGridCell = false,
 }: Props) => {
   const { ref, focused } = useFocusable({
     focusKey: focusKey,
@@ -49,6 +58,10 @@ const FocusableLinkCell = ({
   });
 
   useEffect(() => {
+    if (isGridCell) {
+      return;
+    }
+
     if (!focused) {
       return;
     }
@@ -82,7 +95,39 @@ const FocusableLinkCell = ({
     }
 
     parentEl.style.transform = `translateX(${(parentEl as any).currentScrollLeftPosition}px)`;
-  }, [focused, ref]);
+  }, [focused, ref, isGridCell]);
+
+  useEffect(() => {
+    if (!isGridCell) {
+      return;
+    }
+
+    if (!focused) {
+      return;
+    }
+
+    if (!ref.current) {
+      return;
+    }
+
+    const currentElement = ref.current as HTMLElement;
+    const parentEl = currentElement.parentNode as HTMLElement;
+    const rect = currentElement.getBoundingClientRect();
+
+    if (isInRowViewport(currentElement)) {
+      return;
+    }
+
+    if (!parentEl) {
+      return;
+    }
+
+    window.dispatchEvent(
+      new CustomEvent("layout/scroll", {
+        detail: rect,
+      })
+    );
+  }, [focused, ref, isGridCell]);
 
   return (
     <Link to={to} ref={ref} className={twMerge(className)}>

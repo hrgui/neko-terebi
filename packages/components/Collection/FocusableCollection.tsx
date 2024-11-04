@@ -48,8 +48,6 @@ const FocusableCollection = ({ focusKey: _focusKey, ...props }: FocusableCollect
         detail: rect,
       })
     );
-
-    //parentEl.style.transform = `translateY(${(parentEl as any).currentScrollTopPosition}px)`;
   }, [hasFocusedChild, ref]);
 
   return (
