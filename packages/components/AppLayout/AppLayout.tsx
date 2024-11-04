@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useRef, useState } from "react";
+import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import CenterContent from "@hrgui/neko-terebi-react-component-center-content";
 import MainContainer from "@hrgui/neko-terebi-react-component-main-container";
 import GlobalNav from "@hrgui/neko-terebi-react-comp-global-nav";
