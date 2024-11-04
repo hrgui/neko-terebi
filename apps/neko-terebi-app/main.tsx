@@ -1,4 +1,3 @@
-import "scroll-polyfill/auto";
 // to get @tanstack/react-query to work
 import "./polyfills/patchHeaders.ts";
 import "abortcontroller-polyfill";

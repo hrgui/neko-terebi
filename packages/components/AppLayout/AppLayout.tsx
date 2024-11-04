@@ -2,6 +2,7 @@ import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import CenterContent from "@hrgui/neko-terebi-react-component-center-content";
 import MainContainer from "@hrgui/neko-terebi-react-component-main-container";
 import GlobalNav from "@hrgui/neko-terebi-react-comp-global-nav";
+import { scroll } from "scroll-polyfill";
 
 type Props = {
   children?: React.ReactNode;
@@ -19,7 +20,7 @@ const AppLayout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
     // Get the element's position relative to the top of the page
     const topPosition = customEvent.detail.top + parentRef.current.scrollTop;
 
-    parentRef.current.scroll({ top: topPosition < customEvent.detail.height ? 0 : topPosition });
+    scroll(parentRef.current, { top: topPosition < customEvent.detail.height ? 0 : topPosition });
   }, []);
 
   useEffect(() => {
