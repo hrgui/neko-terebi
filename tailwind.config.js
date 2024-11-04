@@ -21,6 +21,9 @@ export default {
       gray: colors.gray,
     },
     extend: {
+      backgroundImage: {
+        "black-fade": "linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
+      },
       fontSize: {
         "headline-xl": [pxToVw(64), pxToVw(72)],
         "headline-l": [pxToVw(56), pxToVw(72)],

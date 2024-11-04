@@ -5,7 +5,7 @@ import { FocusContext, useFocusable } from "@noriginmedia/norigin-spatial-naviga
 
 export function Root() {
   const navigation = useNavigation();
-  const { focusKey, ref } = useFocusable();
+  const { focusKey, ref } = useFocusable({ focusKey: "root" });
 
   return (
     <FocusContext.Provider value={focusKey}>
