@@ -84,7 +84,7 @@ const FocusableLinkCell = ({
 
     (parentEl as any).currentScrollLeftPosition = (parentEl as any).currentScrollLeftPosition ?? 0;
 
-    if (rect.x < 0) {
+    if (rect.left < 0) {
       // need to add
       (parentEl as any).currentScrollLeftPosition =
         (parentEl as any).currentScrollLeftPosition + rect.width;
