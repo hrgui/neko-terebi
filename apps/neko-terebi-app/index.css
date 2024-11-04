@@ -8,6 +8,10 @@
     width: 100%;
     padding-top: 56.25%; /* enforces a 16:9 aspect ratio */
   }
+
+  .outline-cell {
+    box-shadow: 0 0 0 0.5208333333333333vw #fff;
+  }
 }
 
 @layer utilities {

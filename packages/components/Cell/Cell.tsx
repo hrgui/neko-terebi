@@ -16,7 +16,7 @@ const Cell = forwardRef<HTMLDivElement, CellProps>(
         <div
           className={twMerge(
             "w-full @asvw:h-[297px] bg-gray-700/100 @asvw:rounded-[26.4px]",
-            focused ? "shadow-outline-cell" : ""
+            focused ? "outline-cell" : ""
           )}
           style={{
             backgroundImage: `url("${imageUrl}")`,

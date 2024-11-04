@@ -24,9 +24,6 @@ export default {
       backgroundImage: {
         "black-fade": "linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
       },
-      boxShadow: {
-        "outline-cell": "0 0 0 0.5208333333333333vw #fff",
-      },
       fontSize: {
         "headline-xl": [pxToVw(64), pxToVw(72)],
         "headline-l": [pxToVw(56), pxToVw(72)],
