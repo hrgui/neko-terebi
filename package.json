@@ -55,6 +55,7 @@
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",
     "react-router-dom": "^6.26.2",
+    "scroll-polyfill": "^1.0.1",
     "storybook": "^8.3.6",
     "tailwind-merge": "^2.5.3",
     "tailwindcss": "^3.4.13",
