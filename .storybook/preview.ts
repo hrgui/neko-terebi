@@ -1,7 +1,16 @@
 import type { Preview } from "@storybook/react";
+import { init as setupSpatialNavigation } from "@noriginmedia/norigin-spatial-navigation";
+import { withRouter } from "storybook-addon-remix-react-router";
 import "@hrgui/neko-terebi-app/index.css";
 
+setupSpatialNavigation({
+  debug: true,
+  visualDebug: false,
+  distanceCalculationMethod: "center",
+});
+
 const preview: Preview = {
+  decorators: [withRouter],
   parameters: {
     layout: "fullscreen",
     options: {
