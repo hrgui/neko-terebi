@@ -24,7 +24,6 @@ export function createRouterConfig() {
       loader: (params: any) => {
         const request: Request = params.request;
         const url = new URL(request.url);
-        console.log(url);
         if (url.pathname === "/") {
           return redirect("/welcome");
         }
