@@ -8,6 +8,7 @@ type Props = {
   focusKey?: string;
   focusClassName?: string;
   isGridCell?: boolean;
+  extraProps?: any;
 } & LinkProps &
   CellProps;
 
@@ -43,6 +44,7 @@ const FocusableLinkCell = ({
   header3,
   imageUrl,
   isGridCell = false,
+  extraProps,
 }: Props) => {
   const { ref, focused } = useFocusable({
     focusKey: focusKey,
@@ -55,6 +57,7 @@ const FocusableLinkCell = ({
 
       currentEl.click();
     },
+    extraProps: extraProps,
   });
 
   useEffect(() => {

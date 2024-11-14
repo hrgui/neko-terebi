@@ -11,7 +11,6 @@ type Story = StoryObj<typeof Grid>;
 
 export function DemoGrid() {
   useEffect(() => {
-    console.log("called");
     setFocus("a");
   }, []);
 
@@ -27,6 +26,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 0, col: 0 }}
         />
 
         <FocusableLinkCell
@@ -38,6 +38,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 0, col: 1 }}
         />
 
         <FocusableLinkCell
@@ -49,6 +50,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 0, col: 2 }}
         />
       </div>
 
@@ -62,6 +64,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 1, col: 0 }}
         />
 
         <FocusableLinkCell
@@ -73,6 +76,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 1, col: 1 }}
         />
 
         <FocusableLinkCell
@@ -84,6 +88,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 1, col: 2 }}
         />
       </div>
 
@@ -97,6 +102,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 2, col: 0 }}
         />
 
         <FocusableLinkCell
@@ -108,6 +114,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 2, col: 1 }}
         />
 
         <FocusableLinkCell
@@ -119,6 +126,7 @@ export function DemoGrid() {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 2, col: 2 }}
         />
       </div>
     </Grid>

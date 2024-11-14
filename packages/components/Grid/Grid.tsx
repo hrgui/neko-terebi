@@ -12,7 +12,36 @@ const Grid = ({ children, focusKey: _focusKey = "grid" }: Props) => {
     isFocusBoundary: false,
     trackChildren: true,
     focusable: true,
-    focusBoundaryDirections: ["left", "right", "up", "down"],
+    onGetChildSibling: ({
+      isVerticalDirection,
+      isIncrementalDirection,
+      proposedSibling,
+      currentComponent,
+    }) => {
+      const currentComponentExtraProps = currentComponent.extraProps;
+      const proposedSiblingExtraProps = proposedSibling.extraProps;
+      const isHorizontalDirection = !isVerticalDirection;
+
+      if (currentComponentExtraProps && proposedSiblingExtraProps) {
+        if (isHorizontalDirection) {
+          const nextIndex = currentComponentExtraProps.col + 1;
+          const prevIndex = currentComponentExtraProps.col - 1;
+
+          return isIncrementalDirection
+            ? nextIndex === proposedSiblingExtraProps.col
+            : prevIndex === proposedSiblingExtraProps.col;
+        } else {
+          const nextIndex = currentComponentExtraProps.row + 1;
+          const prevIndex = currentComponentExtraProps.row - 1;
+
+          return isIncrementalDirection
+            ? nextIndex === proposedSiblingExtraProps.row
+            : prevIndex === proposedSiblingExtraProps.row;
+        }
+      }
+
+      return false;
+    },
   });
 
   return (
