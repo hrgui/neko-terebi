@@ -1,4 +1,4 @@
-import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
+import { useFocusable } from "@hrgui/react-spatial-navigation";
 import { Link, LinkProps } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import Cell, { CellProps } from "./Cell";

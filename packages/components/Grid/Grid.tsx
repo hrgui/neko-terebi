@@ -1,5 +1,5 @@
 import React from "react";
-import { useFocusable, FocusContext } from "@noriginmedia/norigin-spatial-navigation";
+import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
 
 type Props = {
   children?: React.ReactNode;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { FocusableLink } from "../FocusableLink/FocusableLink";
-import { setFocus, useFocusable, FocusContext } from "@noriginmedia/norigin-spatial-navigation";
+import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
+import { setFocus } from "@hrgui/spatial-navigation-core";
 import { twMerge } from "tailwind-merge";
 
 const GlobalNav = () => {

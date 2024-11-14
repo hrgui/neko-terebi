@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import { init as setupSpatialNavigation } from "@noriginmedia/norigin-spatial-navigation";
+import { init as setupSpatialNavigation } from "@hrgui/spatial-navigation-core";
 import { withRouter } from "storybook-addon-remix-react-router";
 import "@hrgui/neko-terebi-app/index.css";
 

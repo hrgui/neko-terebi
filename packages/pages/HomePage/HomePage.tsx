@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import FocusableCollection from "../../components/Collection/FocusableCollection";
-import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
+import { setFocus } from "@hrgui/spatial-navigation-core";
 
 const HomePage = () => {
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { Outlet, useNavigation } from "react-router";
 import LoadingOverlay from "@hrgui/neko-terebi-react-component-loading";
 import AppLayout from "@hrgui/neko-terebi-react-component-app-layout";
-import { FocusContext, useFocusable } from "@noriginmedia/norigin-spatial-navigation";
+import { FocusContext, useFocusable } from "@hrgui/react-spatial-navigation";
 import { ScrollRestoration } from "react-router-dom";
 
 export function Root() {

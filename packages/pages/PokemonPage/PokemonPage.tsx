@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router";
-import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
+import { setFocus } from "@hrgui/spatial-navigation-core";
 import { useEffect } from "react";
 import type { IPokemon } from "pokeapi-typescript";
 import { FocusableLink } from "../../components/FocusableLink/FocusableLink";

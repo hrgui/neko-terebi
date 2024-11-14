@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import Grid from "../../components/Grid/Grid";
-import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
+import { setFocus } from "@hrgui/spatial-navigation-core";
 
 const BrowsePage = () => {
   useEffect(() => {

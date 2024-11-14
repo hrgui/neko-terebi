@@ -2,7 +2,7 @@ import type { StoryObj, Meta } from "@storybook/react";
 import Grid from "./Grid";
 import FocusableLinkCell from "../Cell/FocusableLinkCell";
 import { useEffect } from "react";
-import { setFocus } from "@noriginmedia/norigin-spatial-navigation";
+import { setFocus } from "@hrgui/spatial-navigation-core";
 const meta: Meta<typeof Grid> = { title: "Grid", component: Grid };
 
 export default meta;

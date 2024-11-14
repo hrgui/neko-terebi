@@ -8,7 +8,7 @@ import { Container, createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import { init as setupSpatialNavigation } from "@noriginmedia/norigin-spatial-navigation";
+import { init as setupSpatialNavigation } from "@hrgui/spatial-navigation-core";
 import { createHashRouter } from "react-router-dom";
 import { createRouterConfig } from "@hrgui/neko-terebi-app-router";
 
