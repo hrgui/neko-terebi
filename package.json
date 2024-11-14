@@ -9,7 +9,8 @@
     "packages/components/*",
     "packages/pages/*",
     "packages/queries/*",
-    "packages/router/*"
+    "packages/router/*",
+    "packages/spatial-navigation/*"
   ],
   "scripts": {
     "start": "vite",
