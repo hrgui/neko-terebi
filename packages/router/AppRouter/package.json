@@ -4,7 +4,6 @@
   "type": "module",
   "main": "./createRouterConfig.tsx",
   "dependencies": {
-    "@hrgui/neko-terebi-error-page": "*",
-    "@noriginmedia/norigin-spatial-navigation": "^2.2.1"
+    "@hrgui/neko-terebi-error-page": "*"
   }
 }

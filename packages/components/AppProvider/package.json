@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "main": "./AppProvider.tsx",
-  "dependencies": {},
   "peerDependencies": {
-    "@tanstack/react-query": "*",
     "@hrgui/neko-terebi-query-client": "*",
+    "@tanstack/react-query": "*",
     "react-router-dom": "*"
   }
 }

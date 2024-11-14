@@ -4,8 +4,7 @@
   "type": "module",
   "main": "./AppRoot.tsx",
   "peerDependencies": {
-    "@hrgui/neko-terebi-react-component-loading": "*",
     "@hrgui/neko-terebi-react-component-app-layout": "*",
-    "@noriginmedia/norigin-spatial-navigation": "*"
+    "@hrgui/neko-terebi-react-component-loading": "*"
   }
 }
