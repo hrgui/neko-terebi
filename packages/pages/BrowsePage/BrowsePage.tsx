@@ -20,6 +20,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 0, col: 0 }}
         />
 
         <FocusableLinkCell
@@ -31,6 +32,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 0, col: 1 }}
         />
 
         <FocusableLinkCell
@@ -42,6 +44,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 0, col: 2 }}
         />
       </div>
 
@@ -55,6 +58,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 1, col: 0 }}
         />
 
         <FocusableLinkCell
@@ -66,6 +70,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 1, col: 1 }}
         />
 
         <FocusableLinkCell
@@ -77,6 +82,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 1, col: 2 }}
         />
       </div>
 
@@ -90,6 +96,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 2, col: 0 }}
         />
 
         <FocusableLinkCell
@@ -101,6 +108,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 2, col: 1 }}
         />
 
         <FocusableLinkCell
@@ -112,6 +120,7 @@ const BrowsePage = () => {
           header2="Sub | Dub"
           header3="14+"
           className="@asvw:mr-[26px]"
+          extraProps={{ row: 2, col: 2 }}
         />
       </div>
     </Grid>
