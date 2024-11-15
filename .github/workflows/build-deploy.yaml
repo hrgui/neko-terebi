@@ -33,7 +33,10 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: ⚙️ Build
-        run: npm run build
+        run: npm run build && npm run build-storybook
+
+      - name: ⚙️ Prepare
+        run: mkdir -p ./dist/storybook && mv ./storybook-static/* ./dist/storybook
 
       - name: ⚙️ Setup Pages
         if: success()
