@@ -11,7 +11,7 @@ import {
 } from "@hrgui/spatial-navigation-core/SpatialNavigation";
 import { useFocusContext } from "./useFocusContext";
 
-export type EnterPressHandler<P = object> = (props: P, details: KeyPressDetails) => void;
+export type EnterPressHandler<P = object> = (props: P, details?: KeyPressDetails) => void;
 
 export type EnterReleaseHandler<P = object> = (props: P) => void;
 
@@ -43,12 +43,12 @@ export interface UseFocusableConfig<P = object> {
   focusBoundaryDirections?: Direction[];
   focusKey?: string;
   preferredChildFocusKey?: string;
-  onEnterPress?: EnterPressHandler<P>;
-  onEnterRelease?: EnterReleaseHandler<P>;
-  onArrowPress?: ArrowPressHandler<P>;
-  onFocus?: FocusHandler<P>;
-  onBlur?: BlurHandler<P>;
-  extraProps?: P;
+  onEnterPress?: EnterPressHandler<P | undefined>;
+  onEnterRelease?: EnterReleaseHandler<P | undefined>;
+  onArrowPress?: ArrowPressHandler<P | undefined>;
+  onFocus?: FocusHandler<P | undefined>;
+  onBlur?: BlurHandler<P | undefined>;
+  extraProps?: P | undefined;
   onGetChildSibling?: OnGetChildSiblingHandler;
 }
 
@@ -79,7 +79,7 @@ const useFocusableHook = <P>({
   onGetChildSibling,
 }: UseFocusableConfig<P> = {}): UseFocusableResult => {
   const onEnterPressHandler = useCallback(
-    (details: KeyPressDetails) => {
+    (details?: KeyPressDetails) => {
       onEnterPress(extraProps, details);
     },
     [onEnterPress, extraProps]
@@ -130,6 +130,10 @@ const useFocusableHook = <P>({
   useEffect(() => {
     const node = ref.current;
 
+    if (!node) {
+      return;
+    }
+
     SpatialNavigation.addFocusable({
       focusKey,
       node,
@@ -162,6 +166,10 @@ const useFocusableHook = <P>({
 
   useEffect(() => {
     const node = ref.current;
+
+    if (!node) {
+      return;
+    }
 
     SpatialNavigation.updateFocusable(focusKey, {
       node,

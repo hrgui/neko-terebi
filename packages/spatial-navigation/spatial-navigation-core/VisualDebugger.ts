@@ -16,16 +16,24 @@ interface NodeLayout {
 }
 
 class VisualDebugger {
-  private debugCtx: CanvasRenderingContext2D;
+  private debugCtx?: CanvasRenderingContext2D;
 
-  private layoutsCtx: CanvasRenderingContext2D;
+  private layoutsCtx?: CanvasRenderingContext2D;
 
-  private writingDirection: WritingDirection;
+  private writingDirection?: WritingDirection;
 
   constructor(writingDirection: WritingDirection) {
     if (hasDOM) {
-      this.debugCtx = VisualDebugger.createCanvas("sn-debug", "1010", writingDirection);
-      this.layoutsCtx = VisualDebugger.createCanvas("sn-layouts", "1000", writingDirection);
+      this.debugCtx = VisualDebugger.createCanvas(
+        "sn-debug",
+        "1010",
+        writingDirection
+      ) as CanvasRenderingContext2D;
+      this.layoutsCtx = VisualDebugger.createCanvas(
+        "sn-layouts",
+        "1000",
+        writingDirection
+      ) as CanvasRenderingContext2D;
       this.writingDirection = writingDirection;
     }
   }
@@ -57,7 +65,7 @@ class VisualDebugger {
       return;
     }
 
-    this.debugCtx.clearRect(0, 0, WIDTH, HEIGHT);
+    this.debugCtx?.clearRect(0, 0, WIDTH, HEIGHT);
   }
 
   clearLayouts() {
@@ -65,11 +73,11 @@ class VisualDebugger {
       return;
     }
 
-    this.layoutsCtx.clearRect(0, 0, WIDTH, HEIGHT);
+    this.layoutsCtx?.clearRect(0, 0, WIDTH, HEIGHT);
   }
 
   drawLayout(layout: NodeLayout, focusKey: string, parentFocusKey: string) {
-    if (!hasDOM) {
+    if (!hasDOM || !this.layoutsCtx) {
       return;
     }
     this.layoutsCtx.strokeStyle = "green";
@@ -92,7 +100,7 @@ class VisualDebugger {
   }
 
   drawPoint(x: number, y: number, color = "blue", size = 10) {
-    if (!hasDOM) {
+    if (!hasDOM || !this.debugCtx) {
       return;
     }
     this.debugCtx.strokeStyle = color;
