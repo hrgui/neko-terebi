@@ -9,6 +9,7 @@ type Props = {
   focusClassName?: string;
   isGridCell?: boolean;
   extraProps?: any;
+  onSpatialFocus?: any;
 } & LinkProps &
   CellProps;
 
@@ -45,6 +46,7 @@ const FocusableLinkCell = ({
   imageUrl,
   isGridCell = false,
   extraProps,
+  onSpatialFocus,
 }: Props) => {
   const { ref, focused } = useFocusable({
     focusKey: focusKey,
@@ -98,7 +100,9 @@ const FocusableLinkCell = ({
     }
 
     parentEl.style.transform = `translateX(${(parentEl as any).currentScrollLeftPosition}px)`;
-  }, [focused, ref, isGridCell]);
+
+    onSpatialFocus?.(ref.current);
+  }, [focused, ref, isGridCell, onSpatialFocus]);
 
   useEffect(() => {
     if (!isGridCell) {
@@ -125,12 +129,8 @@ const FocusableLinkCell = ({
       return;
     }
 
-    window.dispatchEvent(
-      new CustomEvent("layout/scroll", {
-        detail: rect,
-      })
-    );
-  }, [focused, ref, isGridCell]);
+    onSpatialFocus?.(ref.current);
+  }, [focused, ref, isGridCell, onSpatialFocus]);
 
   return (
     <Link to={to} ref={ref} className={twMerge(className)}>

@@ -1,16 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import FocusableCollection from "../../components/Collection/FocusableCollection";
 import { setFocus } from "@hrgui/spatial-navigation-core";
+import { scrollTo } from "scroll-polyfill";
+
+function isInViewport(element: HTMLElement) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+  );
+}
 
 const HomePage = () => {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setFocus("a");
   }, []);
 
+  function handleFocusedChild(el: HTMLElement) {
+    const collectionElRect = el.getBoundingClientRect();
+
+    if (isInViewport(el)) {
+      return;
+    }
+
+    scrollTo(ref.current!, { top: collectionElRect.top });
+  }
+
   return (
-    <>
-      <FocusableCollection focusKey="collection-1" header="Meowing for days">
+    <div
+      className="overflow-hidden absolute w-full h-full @asvw:pl-[160px] @asvw:pt-[40px]"
+      ref={ref}
+    >
+      <FocusableCollection
+        onFocusedChild={handleFocusedChild}
+        focusKey="collection-1"
+        header="Meowing for days"
+      >
         <FocusableLinkCell
           to="/"
           focusKey="a"
@@ -50,7 +76,11 @@ const HomePage = () => {
         />
       </FocusableCollection>
 
-      <FocusableCollection focusKey="collection-2" header="Meowing for days 2">
+      <FocusableCollection
+        onFocusedChild={handleFocusedChild}
+        focusKey="collection-2"
+        header="Meowing for days 2"
+      >
         <FocusableLinkCell
           to="/"
           focusKey="aa"
@@ -80,7 +110,11 @@ const HomePage = () => {
         />
       </FocusableCollection>
 
-      <FocusableCollection focusKey="collection-3" header="Meowing for days 3">
+      <FocusableCollection
+        onFocusedChild={handleFocusedChild}
+        focusKey="collection-3"
+        header="Meowing for days 3"
+      >
         <FocusableLinkCell
           to="/"
           focusKey="aaa"
@@ -109,7 +143,7 @@ const HomePage = () => {
           className="@asvw:mr-[26px]"
         />
       </FocusableCollection>
-    </>
+    </div>
   );
 };
 

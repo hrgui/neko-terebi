@@ -4,16 +4,14 @@ import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
 
 type FocusableCollectionProps = {
   focusKey: string;
+  onFocusedChild?: any;
 } & CollectionProps;
 
-function isInViewport(element: HTMLElement) {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-  );
-}
-
-const FocusableCollection = ({ focusKey: _focusKey, ...props }: FocusableCollectionProps) => {
+const FocusableCollection = ({
+  focusKey: _focusKey,
+  onFocusedChild,
+  ...props
+}: FocusableCollectionProps) => {
   const { ref, focusKey, hasFocusedChild } = useFocusable({
     focusKey: _focusKey,
     isFocusBoundary: false,
@@ -27,28 +25,8 @@ const FocusableCollection = ({ focusKey: _focusKey, ...props }: FocusableCollect
       return;
     }
 
-    if (!ref.current) {
-      return;
-    }
-
-    const currentElement = ref.current as HTMLElement;
-    const parentEl = currentElement.parentNode as HTMLElement;
-    const rect = currentElement.getBoundingClientRect();
-
-    if (isInViewport(currentElement)) {
-      return;
-    }
-
-    if (!parentEl) {
-      return;
-    }
-
-    window.dispatchEvent(
-      new CustomEvent("layout/scroll", {
-        detail: rect,
-      })
-    );
-  }, [hasFocusedChild, ref]);
+    onFocusedChild?.(ref.current);
+  }, [hasFocusedChild, onFocusedChild, ref]);
 
   return (
     <FocusContext.Provider value={focusKey}>
