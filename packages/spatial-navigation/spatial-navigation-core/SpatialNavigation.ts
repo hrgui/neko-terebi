@@ -996,13 +996,15 @@ export class SpatialNavigationService {
       const { parentFocusKey, focusKey, layout } = currentComponent;
       const currentParentComponent =
         parentFocusKey !== undefined ? this.focusableComponents[parentFocusKey] : null;
-      const currentCutoffCoordinate = SpatialNavigationService.getCutoffCoordinate(
-        isVerticalDirection,
-        isIncrementalDirection,
-        false,
-        layout as FocusableComponentLayout,
-        this.writingDirection
-      );
+      // NOTE: to account for rects when they are not even, offset by 1
+      const currentCutoffCoordinate =
+        SpatialNavigationService.getCutoffCoordinate(
+          isVerticalDirection,
+          isIncrementalDirection,
+          false,
+          layout as FocusableComponentLayout,
+          this.writingDirection
+        ) + (isIncrementalDirection ? -1 : 1);
 
       /**
        * Get only the siblings with the coords on the way of our moving direction
@@ -1030,6 +1032,13 @@ export class SpatialNavigationService {
               writingDirection: this.writingDirection,
             });
           }
+
+          console.log(
+            component.focusKey,
+            siblingCutoffCoordinate,
+            currentCutoffCoordinate,
+            siblingCutoffCoordinate - currentCutoffCoordinate
+          );
 
           return isVerticalDirection
             ? isIncrementalDirection
