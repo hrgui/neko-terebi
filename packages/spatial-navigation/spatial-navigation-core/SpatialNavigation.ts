@@ -96,7 +96,8 @@ export interface FocusableComponent {
   onArrowPress?: (direction: string, details: KeyPressDetails) => boolean;
   onFocus?: (layout: FocusableComponentLayout, details: FocusDetails) => void;
   onBlur?: (layout: FocusableComponentLayout, details: FocusDetails) => void;
-  onUpdateFocus: (focused: boolean) => void;
+  onUpdateFocus: (focused: boolean, focusableComponent: FocusableComponent) => void;
+  onChildUpdateFocus?: (focused: boolean, focusableComponent: FocusableComponent) => void;
   onUpdateHasFocusedChild: (hasFocusedChild: boolean) => void;
   onDidNotNavigate?: () => void;
   saveLastFocusedChild?: boolean;
@@ -1033,13 +1034,6 @@ export class SpatialNavigationService {
             });
           }
 
-          console.log(
-            component.focusKey,
-            siblingCutoffCoordinate,
-            currentCutoffCoordinate,
-            siblingCutoffCoordinate - currentCutoffCoordinate
-          );
-
           return isVerticalDirection
             ? isIncrementalDirection
               ? siblingCutoffCoordinate >= currentCutoffCoordinate // vertical next
@@ -1295,6 +1289,7 @@ export class SpatialNavigationService {
     focusBoundaryDirections,
     extraProps,
     onGetChildSibling,
+    onChildUpdateFocus,
   }: FocusableComponent) {
     this.focusableComponents[focusKey] = {
       focusKey,
@@ -1316,6 +1311,7 @@ export class SpatialNavigationService {
       autoRestoreFocus,
       forceFocus,
       lastFocusedChildKey: null,
+      onChildUpdateFocus,
       layout: {
         x: 0,
         y: 0,
@@ -1380,9 +1376,9 @@ export class SpatialNavigationService {
     const componentToRemove = this.focusableComponents[focusKey];
 
     if (componentToRemove) {
-      const { parentFocusKey, onUpdateFocus } = componentToRemove;
+      const { parentFocusKey } = componentToRemove;
 
-      onUpdateFocus(false);
+      this.onComponentUpdateFocus(false, componentToRemove);
 
       this.log("removeFocusable", "Component removed: ", componentToRemove);
 
@@ -1442,6 +1438,16 @@ export class SpatialNavigationService {
     return null;
   }
 
+  onComponentUpdateFocus(isFocused: boolean, component: FocusableComponent) {
+    component.onUpdateFocus(isFocused, component);
+
+    const parentFocusKey = component.parentFocusKey;
+    const parentComponent = parentFocusKey ? this.focusableComponents[parentFocusKey] : null;
+    if (parentComponent && parentComponent.trackChildren) {
+      parentComponent.onChildUpdateFocus?.(isFocused, component);
+    }
+  }
+
   setCurrentFocusedKey(newFocusKey: string, focusDetails: FocusDetails) {
     if (
       this.focusKey &&
@@ -1450,8 +1456,10 @@ export class SpatialNavigationService {
     ) {
       const oldComponent = this.focusableComponents[this.focusKey];
       const layout = this.getNodeLayoutByFocusKey(this.focusKey);
-      oldComponent.onUpdateFocus(false);
-      if (layout) oldComponent.onBlur?.(layout, focusDetails);
+      this.onComponentUpdateFocus(false, oldComponent);
+      if (layout) {
+        oldComponent.onBlur?.(layout, focusDetails);
+      }
 
       this.log("setCurrentFocusedKey", "onBlur", oldComponent);
     }
@@ -1465,7 +1473,7 @@ export class SpatialNavigationService {
         newComponent.node.focus(this.domNodeFocusOptions);
       }
 
-      newComponent.onUpdateFocus(true);
+      this.onComponentUpdateFocus(true, newComponent);
       newComponent.onFocus?.(
         this.getNodeLayoutByFocusKey(this.focusKey) as FocusableComponentLayout,
         focusDetails

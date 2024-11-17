@@ -8,9 +8,11 @@ export type CollectionProps = {
 const Collection = forwardRef<HTMLDivElement, CollectionProps>(
   ({ children, header, ...rest }, ref) => {
     return (
-      <div ref={ref} {...rest}>
-        {header && <div className="text-body-m @asvw:mb-[16px]">{header}</div>}
-        <div className="flex">{children}</div>
+      <div {...rest}>
+        {header && <div className="text-body-m">{header}</div>}
+        <div className="flex overflow-x-hidden @asvw:pt-[16px] @asvw:pl-[16px]" ref={ref}>
+          {children}
+        </div>
       </div>
     );
   }

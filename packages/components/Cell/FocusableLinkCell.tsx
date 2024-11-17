@@ -73,7 +73,7 @@ const FocusableLinkCell = ({
 
     const currentElement = ref.current as HTMLElement;
     const parentEl = currentElement.parentNode as HTMLElement;
-    const rect = currentElement.getBoundingClientRect();
+    //const rect = currentElement.getBoundingClientRect();
 
     if (isInViewport(currentElement)) {
       return;
@@ -86,20 +86,6 @@ const FocusableLinkCell = ({
     if (!isCollectionInViewport(parentEl)) {
       return;
     }
-
-    (parentEl as any).currentScrollLeftPosition = (parentEl as any).currentScrollLeftPosition ?? 0;
-
-    if (rect.left < 0) {
-      // need to add
-      (parentEl as any).currentScrollLeftPosition =
-        (parentEl as any).currentScrollLeftPosition + rect.width;
-    } else {
-      // need to subtract
-      (parentEl as any).currentScrollLeftPosition =
-        (parentEl as any).currentScrollLeftPosition - rect.width;
-    }
-
-    parentEl.style.transform = `translateX(${(parentEl as any).currentScrollLeftPosition}px)`;
 
     onSpatialFocus?.(ref.current);
   }, [focused, ref, isGridCell, onSpatialFocus]);

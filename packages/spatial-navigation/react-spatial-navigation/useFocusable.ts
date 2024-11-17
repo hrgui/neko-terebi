@@ -8,6 +8,7 @@ import {
   KeyPressDetails,
   Direction,
   OnGetChildSiblingHandler,
+  FocusableComponent,
 } from "@hrgui/spatial-navigation-core/SpatialNavigation";
 import { useFocusContext } from "./useFocusContext";
 
@@ -50,6 +51,9 @@ export interface UseFocusableConfig<P = object> {
   onBlur?: BlurHandler<P | undefined>;
   extraProps?: P | undefined;
   onGetChildSibling?: OnGetChildSiblingHandler;
+  onUpdateFocus?: FocusableComponent["onUpdateFocus"];
+  onUpdateHasFocusedChild?: FocusableComponent["onUpdateHasFocusedChild"];
+  onChildUpdateFocus?: FocusableComponent["onChildUpdateFocus"];
 }
 
 export interface UseFocusableResult {
@@ -77,6 +81,9 @@ const useFocusableHook = <P>({
   onBlur = noop,
   extraProps,
   onGetChildSibling,
+  onUpdateFocus,
+  onUpdateHasFocusedChild,
+  onChildUpdateFocus,
 }: UseFocusableConfig<P> = {}): UseFocusableResult => {
   const onEnterPressHandler = useCallback(
     (details?: KeyPressDetails) => {
@@ -144,8 +151,17 @@ const useFocusableHook = <P>({
       onArrowPress: onArrowPressHandler,
       onFocus: onFocusHandler,
       onBlur: onBlurHandler,
-      onUpdateFocus: (isFocused = false) => setFocused(isFocused),
-      onUpdateHasFocusedChild: (isFocused = false) => setHasFocusedChild(isFocused),
+      onUpdateFocus: (isFocused = false, focusableComponent: FocusableComponent) => {
+        setFocused(isFocused);
+        onUpdateFocus?.(isFocused, focusableComponent);
+      },
+      onChildUpdateFocus: (isFocused = false, focusableComponent: FocusableComponent) => {
+        onChildUpdateFocus?.(isFocused, focusableComponent);
+      },
+      onUpdateHasFocusedChild: (isFocused = false) => {
+        setHasFocusedChild(isFocused);
+        onUpdateHasFocusedChild?.(isFocused);
+      },
       saveLastFocusedChild,
       trackChildren,
       isFocusBoundary,

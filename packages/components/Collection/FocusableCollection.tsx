@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import Collection, { CollectionProps } from "./Collection";
 import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
+import { scroll } from "scroll-polyfill";
+import { getChildVisibilityInParent } from "../../utils/DomUtils";
 
 type FocusableCollectionProps = {
   focusKey: string;
@@ -18,6 +20,21 @@ const FocusableCollection = ({
     trackChildren: true,
     focusable: true,
     focusBoundaryDirections: ["left", "right"],
+    onChildUpdateFocus(focused, focusableComponent) {
+      if (!focused || !focusableComponent) {
+        return;
+      }
+
+      const node = focusableComponent.layout?.node || null;
+      const leftPosition = node?.getBoundingClientRect().left || 0;
+      const el = ref.current;
+
+      const { isFullyVisible } = getChildVisibilityInParent({ parent: el, child: node! });
+
+      if (el && !isFullyVisible) {
+        scroll(el, { left: leftPosition > 0 ? leftPosition : 0 });
+      }
+    },
   });
 
   useEffect(() => {
