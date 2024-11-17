@@ -3,13 +3,7 @@ import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import FocusableCollection from "../../components/Collection/FocusableCollection";
 import { setFocus } from "@hrgui/spatial-navigation-core";
 import { scrollTo } from "scroll-polyfill";
-
-function isInViewport(element: HTMLElement) {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-  );
-}
+import { getChildVisibilityInParent } from "../../utils/DomUtils";
 
 const HomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -19,8 +13,11 @@ const HomePage = () => {
 
   function handleFocusedChild(el: HTMLElement) {
     const collectionElRect = el.getBoundingClientRect();
+    const rootEl = document.getElementById("main-container");
 
-    if (isInViewport(el)) {
+    const { isFullyVisible } = getChildVisibilityInParent({ parent: rootEl!, child: el });
+
+    if (isFullyVisible) {
       return;
     }
 
@@ -33,6 +30,7 @@ const HomePage = () => {
       ref={ref}
     >
       <FocusableCollection
+        className="@asvw:mb-[80px]"
         onFocusedChild={handleFocusedChild}
         focusKey="collection-1"
         header="Meowing for days"
@@ -77,6 +75,7 @@ const HomePage = () => {
       </FocusableCollection>
 
       <FocusableCollection
+        className="@asvw:mb-[80px]"
         onFocusedChild={handleFocusedChild}
         focusKey="collection-2"
         header="Meowing for days 2"
@@ -111,6 +110,7 @@ const HomePage = () => {
       </FocusableCollection>
 
       <FocusableCollection
+        className="@asvw:mb-[80px]"
         onFocusedChild={handleFocusedChild}
         focusKey="collection-3"
         header="Meowing for days 3"

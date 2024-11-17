@@ -3,13 +3,7 @@ import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import Grid from "../../components/Grid/Grid";
 import { setFocus } from "@hrgui/spatial-navigation-core";
 import { scrollTo } from "scroll-polyfill";
-
-function isInViewport(element: HTMLElement) {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-  );
-}
+import { getChildVisibilityInParent } from "../../utils/DomUtils";
 
 const BrowsePage = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -19,8 +13,11 @@ const BrowsePage = () => {
 
   function handleCellFocus(el: HTMLElement) {
     const collectionElRect = el.getBoundingClientRect();
+    const rootEl = document.getElementById("main-container");
 
-    if (isInViewport(el)) {
+    const { isFullyVisible } = getChildVisibilityInParent({ parent: rootEl!, child: el });
+
+    if (isFullyVisible) {
       return;
     }
 
@@ -33,7 +30,7 @@ const BrowsePage = () => {
       ref={ref}
     >
       <Grid>
-        <div className="flex">
+        <div className="flex @asvw:mb-[80px]">
           <FocusableLinkCell
             onSpatialFocus={handleCellFocus}
             isGridCell
@@ -74,7 +71,7 @@ const BrowsePage = () => {
           />
         </div>
 
-        <div className="flex">
+        <div className="flex @asvw:mb-[80px]">
           <FocusableLinkCell
             onSpatialFocus={handleCellFocus}
             isGridCell
@@ -115,7 +112,7 @@ const BrowsePage = () => {
           />
         </div>
 
-        <div className="flex">
+        <div className="flex @asvw:mb-[80px]">
           <FocusableLinkCell
             onSpatialFocus={handleCellFocus}
             isGridCell

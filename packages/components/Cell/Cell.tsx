@@ -25,7 +25,7 @@ const Cell = forwardRef<HTMLDivElement, CellProps>(
             backgroundPosition: "center",
           }}
         ></div>
-        <div className="w-full @asvw:h-[171px] @asvw:mt-[16px]">
+        <div className="w-full  @asvw:mt-[16px]">
           <div
             className={`${twMerge(
               "font-semibold text-gray-400/100",

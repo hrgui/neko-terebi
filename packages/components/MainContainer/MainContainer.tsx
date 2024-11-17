@@ -6,8 +6,10 @@ type Props = {
 
 const MainContainer = ({ children }: Props) => {
   return (
-    <div className="w-full bg-black/100 text-white/100 overflow-auto no-scrollbar aspect-ratio-box">
-      <div className="absolute top-0 left-0 bottom-0 right-0">{children}</div>
+    <div className="w-full bg-black/100 text-white/100 overflow-hidden no-scrollbar aspect-ratio-box">
+      <div className="absolute top-0 left-0 bottom-0 right-0 w-full h-full" id="main-container">
+        {children}
+      </div>
     </div>
   );
 };

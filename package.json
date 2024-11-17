@@ -10,6 +10,7 @@
     "packages/pages/*",
     "packages/queries/*",
     "packages/router/*",
+    "packages/utils/*",
     "packages/spatial-navigation/*"
   ],
   "scripts": {
