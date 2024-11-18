@@ -15,8 +15,8 @@ import { createRouterConfig } from "@hrgui/neko-terebi-app-router";
 export function bootstrap(el: Container) {
   setupApiEdaClient();
   setupSpatialNavigation({
-    debug: import.meta.env.VITE_NEKO_SPATIAL_NAV_DEBUG === "1",
-    visualDebug: import.meta.env.VITE_NEKO_SPATIAL_NAV_DEBUG === "1",
+    debug: import.meta.env.VITE_TEREBI_SPATIAL_NAV_DEBUG === "1",
+    visualDebug: import.meta.env.VITE_TEREBI_SPATIAL_NAV_VISUAL_DEBUG === "1",
   });
   const router = createHashRouter(createRouterConfig());
   createRoot(el).render(

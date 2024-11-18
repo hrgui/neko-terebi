@@ -277,6 +277,10 @@ export class SpatialNavigationService {
 
   eventEmitter: typeof DomEventEmitter;
 
+  get isDebugEnabled() {
+    return this.debug;
+  }
+
   /**
    * Used to determine the coordinate that will be used to filter items that are over the "edge"
    */
@@ -1716,6 +1720,10 @@ export class SpatialNavigationService {
  */
 /** @internal */
 export const SpatialNavigation = new SpatialNavigationService();
+
+if (window && SpatialNavigation.isDebugEnabled) {
+  (window as any).spatialNavigationService = SpatialNavigation;
+}
 
 export const {
   init,
