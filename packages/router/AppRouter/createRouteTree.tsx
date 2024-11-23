@@ -19,79 +19,92 @@ const rootRoute = createRootRoute({
   errorComponent: ErrorPage,
 });
 
-export const routeTree = rootRoute.addChildren([
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/",
-    loader: (params) => {
-      if (params.route.path === "/") {
-        throw redirect({ to: "/welcome" });
-      }
-    },
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/watch/$guid",
-    component: VideoPlayerPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/history",
-    component: HistoryPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    loader: async () => {
-      await wait(3000);
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  loader: (params) => {
+    if (params.route.path === "/") {
+      throw redirect({ to: "/welcome" });
+    }
+  },
+});
+const watchRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/watch/$guid",
+  component: VideoPlayerPage,
+  errorComponent: ErrorPage,
+});
+const historyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/history",
+  component: HistoryPage,
+  errorComponent: ErrorPage,
+});
+const welcomeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  loader: async () => {
+    await wait(3000);
 
-      return { foo: true };
-    },
-    path: "/welcome",
-    component: EntryPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/browse",
-    component: BrowsePage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/series",
-    component: SeriesPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/search",
-    component: SearchPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/login",
-    component: LoginPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/settings",
-    component: SettingsPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/watchlist",
-    component: WatchlistPage,
-    errorComponent: ErrorPage,
-  }),
-  createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/home",
-    component: HomePage,
-    errorComponent: ErrorPage,
-  }),
+    return { foo: true };
+  },
+  path: "/welcome",
+  component: EntryPage,
+  errorComponent: ErrorPage,
+});
+const browseRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/browse",
+  component: BrowsePage,
+  errorComponent: ErrorPage,
+});
+const seriesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/series",
+  component: SeriesPage,
+  errorComponent: ErrorPage,
+});
+const searchRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/search",
+  component: SearchPage,
+  errorComponent: ErrorPage,
+});
+
+const loginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/login",
+  component: LoginPage,
+  errorComponent: ErrorPage,
+});
+const settingsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/settings",
+  component: SettingsPage,
+  errorComponent: ErrorPage,
+});
+const watchlistRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/watchlist",
+  component: WatchlistPage,
+  errorComponent: ErrorPage,
+});
+const homeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/home",
+  component: HomePage,
+  errorComponent: ErrorPage,
+});
+
+export const routeTree = rootRoute.addChildren([
+  indexRoute,
+  watchRoute,
+  historyRoute,
+  welcomeRoute,
+  browseRoute,
+  seriesRoute,
+  searchRoute,
+  loginRoute,
+  settingsRoute,
+  watchlistRoute,
+  homeRoute,
 ]);
