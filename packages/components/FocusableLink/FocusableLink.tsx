@@ -1,10 +1,11 @@
-import { Link, LinkProps } from "react-router-dom";
+import { Link, LinkProps } from "@tanstack/react-router";
 import { twMerge } from "tailwind-merge";
 import { useFocusable } from "@hrgui/react-spatial-navigation";
 
 export interface FocusableLinkProps {
   focusKey?: string;
   focusClassName?: string;
+  className?: string;
 }
 
 export function FocusableLink({

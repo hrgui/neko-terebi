@@ -5,7 +5,6 @@
   "main": "./AppProvider.tsx",
   "peerDependencies": {
     "@hrgui/neko-terebi-query-client": "*",
-    "@tanstack/react-query": "*",
-    "react-router-dom": "*"
+    "@tanstack/react-query": "*"
   }
 }

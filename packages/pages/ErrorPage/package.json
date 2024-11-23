@@ -3,7 +3,5 @@
   "version": "0.0.0",
   "type": "module",
   "main": "./ErrorPage.tsx",
-  "peerDependencies": {
-    "react-router-dom": "^6.26.2"
-  }
+  "peerDependencies": {}
 }
