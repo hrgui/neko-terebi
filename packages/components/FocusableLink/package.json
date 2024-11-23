@@ -4,7 +4,6 @@
   "type": "module",
   "main": "./FocusableLink.tsx",
   "peerDependencies": {
-    "react-router-dom": "*",
     "tailwind-merge": "*"
   }
 }

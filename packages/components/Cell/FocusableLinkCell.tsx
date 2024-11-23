@@ -1,5 +1,5 @@
 import { useFocusable } from "@hrgui/react-spatial-navigation";
-import { Link, LinkProps } from "react-router-dom";
+import { Link, LinkProps } from "@tanstack/react-router";
 import { twMerge } from "tailwind-merge";
 import Cell, { CellProps } from "./Cell";
 import { useEffect } from "react";
