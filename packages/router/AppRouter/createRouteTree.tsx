@@ -12,6 +12,7 @@ import WatchlistPage from "@hrgui/neko-terebi-watchlist-page";
 import HomePage from "@hrgui/neko-terebi-home-page";
 
 import { createRootRoute, createRoute, redirect } from "@tanstack/react-router";
+import { wait } from "../../utils/WaitUtils";
 
 const rootRoute = createRootRoute({
   component: Root,
@@ -42,6 +43,11 @@ export const routeTree = rootRoute.addChildren([
   }),
   createRoute({
     getParentRoute: () => rootRoute,
+    loader: async () => {
+      await wait(3000);
+
+      return { foo: true };
+    },
     path: "/welcome",
     component: EntryPage,
     errorComponent: ErrorPage,
