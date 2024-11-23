@@ -86,16 +86,6 @@ const GlobalNav = () => {
         </FocusableLink>
 
         <FocusableLink
-          focusKey="global-nav-pokemon"
-          to="/pokemon/1"
-          className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
-        >
-          <span className="material-symbols-outlined @asvw:mr-[10px]">web</span>
-          {isFocused && <span>Pokemon</span>}
-        </FocusableLink>
-
-        <FocusableLink
           focusKey="global-nav-settings"
           to="/settings"
           className="mt-auto flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
