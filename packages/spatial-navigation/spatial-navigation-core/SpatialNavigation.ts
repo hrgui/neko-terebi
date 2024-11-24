@@ -99,7 +99,7 @@ export interface FocusableComponent {
   onUpdateFocus: (focused: boolean, focusableComponent: FocusableComponent) => void;
   onChildUpdateFocus?: (focused: boolean, focusableComponent: FocusableComponent) => void;
   onUpdateHasFocusedChild: (hasFocusedChild: boolean) => void;
-  onDidNotNavigate?: () => void;
+  onDidNotNavigate?: (component: any, props: any) => void;
   saveLastFocusedChild?: boolean;
   trackChildren?: boolean;
   preferredChildFocusKey?: string;
@@ -205,6 +205,10 @@ export class SpatialNavigationService {
    * Focus key of the currently focused element
    */
   private focusKey: string | null;
+  /**
+   * Previous Focus Key before changing focus key
+   */
+  private previousFocusKey: string | null;
 
   private shouldFocusDOMNode: boolean;
 
@@ -585,6 +589,7 @@ export class SpatialNavigationService {
      * Storing current focused key
      */
     this.focusKey = null;
+    this.previousFocusKey = null;
 
     /**
      * This collection contains focus keys of the elements that are having a child focused
@@ -627,6 +632,7 @@ export class SpatialNavigationService {
     this.getCurrentFocusKey = this.getCurrentFocusKey.bind(this);
     this.doesFocusableExist = this.doesFocusableExist.bind(this);
     this.updateRtl = this.updateRtl.bind(this);
+    this.getPreviousFocusKey = this.getPreviousFocusKey.bind(this);
 
     this.setFocusDebounced = debounce(this.setFocus, AUTO_RESTORE_FOCUS_DELAY, {
       leading: false,
@@ -866,15 +872,26 @@ export class SpatialNavigationService {
     }
   }
 
-  onDidNotNavigate(component: FocusableComponent) {
+  onDidNotNavigate(component: FocusableComponent, props: any) {
+    /*
+    this.onDidNotNavigate(currentComponent, {
+        direction,
+        fromParentFocusKey,
+        focusDetails,
+        result,
+      });
+      */
+
     this.log("onDidNotNavigate", "component", component.node);
+    props = { ...props, previousFocusKey: this.previousFocusKey };
 
     if (component.onDidNotNavigate) {
-      component.onDidNotNavigate();
+      component.onDidNotNavigate(component, props);
     }
 
     this.eventEmitter.emit("sn/onDidNotNavigate", {
       component,
+      props,
     });
   }
 
@@ -1121,7 +1138,12 @@ export class SpatialNavigationService {
     );
 
     if (!result && currentComponent) {
-      this.onDidNotNavigate(currentComponent);
+      this.onDidNotNavigate(currentComponent, {
+        direction,
+        fromParentFocusKey,
+        focusDetails,
+        result,
+      });
     }
 
     return result;
@@ -1159,6 +1181,13 @@ export class SpatialNavigationService {
    */
   getCurrentFocusKey(): string | null {
     return this.focusKey;
+  }
+
+  /**
+   * Returns the current focus key
+   */
+  getPreviousFocusKey(): string | null {
+    return this.previousFocusKey;
   }
 
   /**
@@ -1294,8 +1323,10 @@ export class SpatialNavigationService {
     extraProps,
     onGetChildSibling,
     onChildUpdateFocus,
+    onDidNotNavigate,
   }: FocusableComponent) {
     this.focusableComponents[focusKey] = {
+      onDidNotNavigate,
       focusKey,
       node,
       parentFocusKey,
@@ -1468,6 +1499,7 @@ export class SpatialNavigationService {
       this.log("setCurrentFocusedKey", "onBlur", oldComponent);
     }
 
+    this.previousFocusKey = this.focusKey;
     this.focusKey = newFocusKey;
 
     if (this.isFocusableComponent(this.focusKey)) {
@@ -1720,10 +1752,7 @@ export class SpatialNavigationService {
  */
 /** @internal */
 export const SpatialNavigation = new SpatialNavigationService();
-
-if (window && SpatialNavigation.isDebugEnabled) {
-  (window as any).spatialNavigationService = SpatialNavigation;
-}
+(window as any).spatialNavigationService = SpatialNavigation;
 
 export const {
   init,
@@ -1736,6 +1765,7 @@ export const {
   resume,
   updateAllLayouts,
   getCurrentFocusKey,
+  getPreviousFocusKey,
   doesFocusableExist,
   updateRtl,
 } = SpatialNavigation;

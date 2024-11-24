@@ -54,6 +54,7 @@ export interface UseFocusableConfig<P = object> {
   onUpdateFocus?: FocusableComponent["onUpdateFocus"];
   onUpdateHasFocusedChild?: FocusableComponent["onUpdateHasFocusedChild"];
   onChildUpdateFocus?: FocusableComponent["onChildUpdateFocus"];
+  onDidNotNavigate?: (component: any, props: any) => void;
 }
 
 export interface UseFocusableResult {
@@ -84,6 +85,7 @@ const useFocusableHook = <P>({
   onUpdateFocus,
   onUpdateHasFocusedChild,
   onChildUpdateFocus,
+  onDidNotNavigate,
 }: UseFocusableConfig<P> = {}): UseFocusableResult => {
   const onEnterPressHandler = useCallback(
     (details?: KeyPressDetails) => {
@@ -171,6 +173,7 @@ const useFocusableHook = <P>({
       focusable,
       extraProps,
       onGetChildSibling,
+      onDidNotNavigate,
     });
 
     return () => {
