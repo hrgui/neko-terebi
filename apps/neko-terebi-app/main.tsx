@@ -1,6 +1,9 @@
 // to get @tanstack/react-query to work
 import "./polyfills/patchHeaders.ts";
 import "abortcontroller-polyfill";
+import ScrollPolyfill from "scroll-polyfill";
+
+ScrollPolyfill({ force: true });
 
 import { init as setupApiEdaClient } from "../../packages/client/ApiClient/index.ts";
 import { StrictMode } from "react";

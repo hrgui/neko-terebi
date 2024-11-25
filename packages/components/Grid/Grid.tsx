@@ -1,12 +1,12 @@
 import React from "react";
 import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
 
-type Props = {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
   children?: React.ReactNode;
   focusKey?: string;
 };
 
-const Grid = ({ children, focusKey: _focusKey = "grid" }: Props) => {
+const Grid = ({ children, focusKey: _focusKey = "grid", ...otherProps }: Props) => {
   const { ref, focusKey } = useFocusable({
     focusKey: _focusKey,
     isFocusBoundary: false,
@@ -24,12 +24,15 @@ const Grid = ({ children, focusKey: _focusKey = "grid" }: Props) => {
 
       if (currentComponentExtraProps && proposedSiblingExtraProps) {
         if (isHorizontalDirection) {
+          const currentRow = currentComponentExtraProps.row;
           const nextIndex = currentComponentExtraProps.col + 1;
           const prevIndex = currentComponentExtraProps.col - 1;
 
           return isIncrementalDirection
-            ? nextIndex === proposedSiblingExtraProps.col
-            : prevIndex === proposedSiblingExtraProps.col;
+            ? currentRow === proposedSiblingExtraProps.row &&
+                nextIndex === proposedSiblingExtraProps.col
+            : currentRow === proposedSiblingExtraProps.row &&
+                prevIndex === proposedSiblingExtraProps.col;
         } else {
           const nextIndex = currentComponentExtraProps.row + 1;
           const prevIndex = currentComponentExtraProps.row - 1;
@@ -46,7 +49,7 @@ const Grid = ({ children, focusKey: _focusKey = "grid" }: Props) => {
 
   return (
     <FocusContext.Provider value={focusKey}>
-      <div ref={ref} className="flex flex-wrap">
+      <div ref={ref} className="flex flex-wrap relative" {...otherProps}>
         {children}
       </div>
     </FocusContext.Provider>

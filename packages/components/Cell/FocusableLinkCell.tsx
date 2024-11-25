@@ -47,6 +47,7 @@ const FocusableLinkCell = ({
   isGridCell = false,
   extraProps,
   onSpatialFocus,
+  ...otherProps
 }: Props) => {
   const { ref, focused } = useFocusable({
     focusKey: focusKey,
@@ -118,7 +119,7 @@ const FocusableLinkCell = ({
   }, [focused, ref, isGridCell, onSpatialFocus]);
 
   return (
-    <Link to={to} ref={ref} className={twMerge(className)}>
+    <Link to={to} ref={ref} className={twMerge(className)} {...(otherProps as any)}>
       <Cell focused={focused} {...{ header1, header2, header3, imageUrl }} />
     </Link>
   );
