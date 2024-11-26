@@ -126,6 +126,7 @@ export interface FocusableComponentUpdatePayload {
   onArrowPress: (direction: string, details: KeyPressDetails) => boolean;
   onFocus: (layout: FocusableComponentLayout, details: FocusDetails) => void;
   onBlur: (layout: FocusableComponentLayout, details: FocusDetails) => void;
+  onDidNotNavigate?: (component: any, props: any) => void;
 }
 
 export interface FocusableComponentRemovePayload {
@@ -1705,6 +1706,7 @@ export class SpatialNavigationService {
       onArrowPress,
       onFocus,
       onBlur,
+      onDidNotNavigate,
     }: FocusableComponentUpdatePayload
   ) {
     if (this.nativeMode) {
@@ -1723,6 +1725,7 @@ export class SpatialNavigationService {
       component.onArrowPress = onArrowPress;
       component.onFocus = onFocus;
       component.onBlur = onBlur;
+      component.onDidNotNavigate = onDidNotNavigate;
 
       if (node) {
         component.node = node;

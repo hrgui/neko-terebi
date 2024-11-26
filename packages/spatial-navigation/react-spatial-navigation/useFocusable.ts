@@ -201,6 +201,7 @@ const useFocusableHook = <P>({
       onArrowPress: onArrowPressHandler,
       onFocus: onFocusHandler,
       onBlur: onBlurHandler,
+      onDidNotNavigate,
     });
   }, [
     focusKey,
@@ -213,6 +214,7 @@ const useFocusableHook = <P>({
     onArrowPressHandler,
     onFocusHandler,
     onBlurHandler,
+    onDidNotNavigate,
   ]);
 
   return {

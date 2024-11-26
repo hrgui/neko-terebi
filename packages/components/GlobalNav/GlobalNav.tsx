@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FocusableLink } from "../FocusableLink/FocusableLink";
 import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
 import { getPreviousFocusKey, setFocus } from "@hrgui/spatial-navigation-core";
@@ -6,20 +6,31 @@ import { twMerge } from "tailwind-merge";
 
 const GlobalNav = () => {
   const [lastFocusedKeyBeforeMenu, setLastFocusedKeyBeforeMenu] = useState<string | null>(null);
+  const onDidNotNavigate = useCallback(
+    (_: any, props: any) => {
+      if (props.direction === "right" && lastFocusedKeyBeforeMenu) {
+        setFocus(lastFocusedKeyBeforeMenu);
+      }
+    },
+    [lastFocusedKeyBeforeMenu]
+  );
+
   const { ref, focusKey, hasFocusedChild, focused } = useFocusable({
     focusKey: "menu",
     focusable: true,
     isFocusBoundary: false,
     trackChildren: true,
     autoRestoreFocus: true,
-    onDidNotNavigate: (_, props) => {
-      if (props.direction === "right" && lastFocusedKeyBeforeMenu) {
-        setFocus(lastFocusedKeyBeforeMenu);
-      }
-    },
+    onDidNotNavigate,
     onChildUpdateFocus(newState) {
       if (newState) {
-        setLastFocusedKeyBeforeMenu(getPreviousFocusKey());
+        const previousFocusKey = getPreviousFocusKey();
+
+        if (previousFocusKey?.includes("global-nav")) {
+          return;
+        }
+
+        setLastFocusedKeyBeforeMenu(previousFocusKey);
       }
     },
     focusBoundaryDirections: ["up", "down"],
