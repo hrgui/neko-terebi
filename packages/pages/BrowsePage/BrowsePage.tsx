@@ -1,9 +1,34 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import Grid from "../../components/Grid/Grid";
 import { setFocus } from "@hrgui/spatial-navigation-core";
 import { elementScroll, useVirtualizer, VirtualizerOptions } from "@tanstack/react-virtual";
-import { useFocusable } from "@hrgui/react-spatial-navigation";
+import { FocusContext, useFocusable } from "@hrgui/react-spatial-navigation";
+import { FocusableLink } from "../../components/FocusableLink/FocusableLink";
+
+const SAMPLE_FILTERS = [
+  { id: "popular", title: "Popular" },
+  { id: "newly added", title: "Newly Added" },
+  { id: "alphabetical", title: "A-Z" },
+];
+
+const SAMPLE_CATEGORIES = [
+  { id: "action", title: "Action" },
+  { id: "adventure", title: "Adventure" },
+  { id: "comedy", title: "Comedy" },
+  { id: "drama", title: "Drama" },
+  { id: "fantasy", title: "Fantasy" },
+  { id: "music", title: "Music" },
+  { id: "romance", title: "Romance" },
+  { id: "sci-fi", title: "Sci-Fi" },
+  { id: "seinen", title: "Seinen" },
+  { id: "shojo", title: "Shojo" },
+  { id: "shonen", title: "Shonen" },
+  { id: "slice of life", title: "Slice of life" },
+  { id: "sports", title: "Sports" },
+  { id: "supernatural", title: "Supernatural" },
+  { id: "thriller", title: "Thriller" },
+];
 
 function getRandomColors(): string {
   // Helper function to generate a random hex color
@@ -44,11 +69,24 @@ function getRandomColors(): string {
 }
 
 function BrowsePage() {
-  const { ref } = useFocusable({ focusKey: "blah" });
+  const [isNavFocused, setIsNavFocused] = useState(true);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { ref: ref2, focusKey } = useFocusable({
+    focusKey: "filters",
+    saveLastFocusedChild: true,
+    focusable: true,
+    trackChildren: true,
+    autoRestoreFocus: true,
+    isFocusBoundary: false,
+    onChildUpdateFocus(newState) {
+      setIsNavFocused(newState);
+    },
+  });
 
   useEffect(() => {
     rowVirtualizer.scrollToIndex(0);
-    setFocus("0-0");
+    setFocus("browse-filter-popular");
   }, []);
 
   const scrollToFn: VirtualizerOptions<any, any>["scrollToFn"] = useCallback(
@@ -73,7 +111,42 @@ function BrowsePage() {
   }
 
   return (
-    <div style={{ position: "absolute" }}>
+    <div className="flex">
+      <FocusContext.Provider value={focusKey}>
+        <div
+          className="flex-shrink-0 @asvw:w-[420px]"
+          ref={ref2}
+          style={{ marginLeft: isNavFocused ? 160 : 0 }}
+        >
+          {SAMPLE_FILTERS.map((filter) => {
+            return (
+              <FocusableLink
+                key={filter.id}
+                focusKey={`browse-filter-${filter.id}`}
+                className="flex items-center text-cta @asvw:h-[72px] mb-auto w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
+                focusClassName="bg-primary/100"
+                to="/browse"
+              >
+                <span>{filter.title}</span>
+              </FocusableLink>
+            );
+          })}
+
+          {SAMPLE_CATEGORIES.map((category) => {
+            return (
+              <FocusableLink
+                key={category.id}
+                focusKey={`browse-category-${category.id}`}
+                className="flex items-center text-cta @asvw:h-[72px] mb-auto w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
+                focusClassName="bg-primary/100"
+                to="/browse"
+              >
+                <span>{category.title}</span>
+              </FocusableLink>
+            );
+          })}
+        </div>
+      </FocusContext.Provider>
       <div
         ref={ref}
         className="List"
@@ -156,8 +229,6 @@ function BrowsePage() {
           })}
         </Grid>
       </div>
-      <br />
-      <br />
     </div>
   );
 }
