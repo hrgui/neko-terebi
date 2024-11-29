@@ -1,12 +1,13 @@
 import React from "react";
-import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
+import { useFocusable, FocusContext, UseFocusableConfig } from "@hrgui/react-spatial-navigation";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   children?: React.ReactNode;
   focusKey?: string;
+  focusableProps?: Partial<UseFocusableConfig<any>>;
 };
 
-const Grid = ({ children, focusKey: _focusKey = "grid", ...otherProps }: Props) => {
+const Grid = ({ children, focusKey: _focusKey = "grid", focusableProps, ...otherProps }: Props) => {
   const { ref, focusKey } = useFocusable({
     focusKey: _focusKey,
     isFocusBoundary: false,
@@ -45,6 +46,7 @@ const Grid = ({ children, focusKey: _focusKey = "grid", ...otherProps }: Props) 
 
       return false;
     },
+    ...focusableProps,
   });
 
   return (

@@ -116,7 +116,11 @@ function BrowsePage() {
         <div
           className="flex-shrink-0 @asvw:w-[420px]"
           ref={ref2}
-          style={{ marginLeft: isNavFocused ? 160 : 0 }}
+          style={{
+            marginLeft: isNavFocused ? 160 : 0,
+            width: !isNavFocused ? 0 : undefined,
+            display: !isNavFocused ? "none" : undefined,
+          }}
         >
           {SAMPLE_FILTERS.map((filter) => {
             return (
@@ -163,6 +167,11 @@ function BrowsePage() {
             height: `${rowVirtualizer.getTotalSize()}px`,
             width: "100%",
             position: "relative",
+          }}
+          focusableProps={{
+            getSiblings(components) {
+              return [components["filters"]];
+            },
           }}
         >
           {rowVirtualizer.getVirtualItems().map((virtualRow) => {

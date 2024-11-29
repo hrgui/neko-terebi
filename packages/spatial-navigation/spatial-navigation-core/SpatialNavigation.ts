@@ -113,6 +113,7 @@ export interface FocusableComponent {
   layoutUpdated?: boolean;
   extraProps?: any;
   onGetChildSibling?: OnGetChildSiblingHandler;
+  getSiblings?: (components: { [index: string]: FocusableComponent }) => FocusableComponent[];
 }
 
 export interface FocusableComponentUpdatePayload {
@@ -127,6 +128,7 @@ export interface FocusableComponentUpdatePayload {
   onFocus: (layout: FocusableComponentLayout, details: FocusDetails) => void;
   onBlur: (layout: FocusableComponentLayout, details: FocusDetails) => void;
   onDidNotNavigate?: (component: any, props: any) => void;
+  getSiblings?: FocusableComponent["getSiblings"];
 }
 
 export interface FocusableComponentRemovePayload {
@@ -1032,45 +1034,47 @@ export class SpatialNavigationService {
       /**
        * Get only the siblings with the coords on the way of our moving direction
        */
-      const siblings = filter(this.focusableComponents, (component) => {
-        if (component.parentFocusKey === parentFocusKey && component.focusable) {
-          this.updateLayout(component.focusKey);
-          const siblingCutoffCoordinate = SpatialNavigationService.getCutoffCoordinate(
-            isVerticalDirection,
-            isIncrementalDirection,
-            true,
-            component.layout as FocusableComponentLayout,
-            this.writingDirection
-          );
+      const siblings = currentComponent.getSiblings
+        ? currentComponent.getSiblings(this.focusableComponents)
+        : filter(this.focusableComponents, (component) => {
+            if (component.parentFocusKey === parentFocusKey && component.focusable) {
+              this.updateLayout(component.focusKey);
+              const siblingCutoffCoordinate = SpatialNavigationService.getCutoffCoordinate(
+                isVerticalDirection,
+                isIncrementalDirection,
+                true,
+                component.layout as FocusableComponentLayout,
+                this.writingDirection
+              );
 
-          if (currentParentComponent && currentParentComponent.onGetChildSibling) {
-            return currentParentComponent.onGetChildSibling({
-              currentComponent,
-              proposedSibling: component,
-              direction,
-              fromParentFocusKey,
-              focusDetails,
-              isVerticalDirection,
-              isIncrementalDirection,
-              writingDirection: this.writingDirection,
-            });
-          }
+              if (currentParentComponent && currentParentComponent.onGetChildSibling) {
+                return currentParentComponent.onGetChildSibling({
+                  currentComponent,
+                  proposedSibling: component,
+                  direction,
+                  fromParentFocusKey,
+                  focusDetails,
+                  isVerticalDirection,
+                  isIncrementalDirection,
+                  writingDirection: this.writingDirection,
+                });
+              }
 
-          return isVerticalDirection
-            ? isIncrementalDirection
-              ? siblingCutoffCoordinate >= currentCutoffCoordinate // vertical next
-              : siblingCutoffCoordinate <= currentCutoffCoordinate // vertical previous
-            : this.writingDirection === WritingDirection.LTR
-            ? isIncrementalDirection
-              ? siblingCutoffCoordinate >= currentCutoffCoordinate // horizontal LTR next
-              : siblingCutoffCoordinate <= currentCutoffCoordinate // horizontal LTR previous
-            : isIncrementalDirection
-            ? siblingCutoffCoordinate <= currentCutoffCoordinate // horizontal RTL next
-            : siblingCutoffCoordinate >= currentCutoffCoordinate; // horizontal RTL previous
-        }
+              return isVerticalDirection
+                ? isIncrementalDirection
+                  ? siblingCutoffCoordinate >= currentCutoffCoordinate // vertical next
+                  : siblingCutoffCoordinate <= currentCutoffCoordinate // vertical previous
+                : this.writingDirection === WritingDirection.LTR
+                ? isIncrementalDirection
+                  ? siblingCutoffCoordinate >= currentCutoffCoordinate // horizontal LTR next
+                  : siblingCutoffCoordinate <= currentCutoffCoordinate // horizontal LTR previous
+                : isIncrementalDirection
+                ? siblingCutoffCoordinate <= currentCutoffCoordinate // horizontal RTL next
+                : siblingCutoffCoordinate >= currentCutoffCoordinate; // horizontal RTL previous
+            }
 
-        return false;
-      });
+            return false;
+          });
 
       if (this.debug) {
         this.log("smartNavigate", "currentCutoffCoordinate", currentCutoffCoordinate);
@@ -1707,6 +1711,7 @@ export class SpatialNavigationService {
       onFocus,
       onBlur,
       onDidNotNavigate,
+      getSiblings,
     }: FocusableComponentUpdatePayload
   ) {
     if (this.nativeMode) {
@@ -1726,6 +1731,7 @@ export class SpatialNavigationService {
       component.onFocus = onFocus;
       component.onBlur = onBlur;
       component.onDidNotNavigate = onDidNotNavigate;
+      component.getSiblings = getSiblings;
 
       if (node) {
         component.node = node;
