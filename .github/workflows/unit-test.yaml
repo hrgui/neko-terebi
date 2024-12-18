@@ -25,13 +25,11 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+      - name: ⎔ Setup bun
+        uses: oven-sh/setup-bun@v2
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+      - name: Install
+        run: bun install
 
       - name: Test
-        run: npm run test
+        run: bun run test
