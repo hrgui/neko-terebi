@@ -3,8 +3,8 @@
 # Getting Started
 
 ```
-npm i
-npm run dev
+bun i
+bun run dev
 ```
 
 # Environment Variables
