@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import { elementScroll, useVirtualizer, VirtualizerOptions } from "@tanstack/react-virtual";
 import Grid from "../../components/Grid/Grid";
-import { getRandomColors } from "../../utils/ColorUtils/getRandomColors";
+import { getRandomColors } from "../../utils/color-utils/getRandomColors";
 
 const BrowseGrid = () => {
   const ref = useRef<HTMLDivElement>(null);

@@ -3,7 +3,7 @@ import FocusableLinkCell from "../../components/Cell/FocusableLinkCell";
 import FocusableCollection from "../../components/Collection/FocusableCollection";
 import { setFocus } from "@hrgui/spatial-navigation-core";
 import { scrollTo } from "scroll-polyfill";
-import { getChildVisibilityInParent } from "../../utils/DomUtils";
+import { getChildVisibilityInParent } from "../../utils/dom-utils";
 
 const HomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
