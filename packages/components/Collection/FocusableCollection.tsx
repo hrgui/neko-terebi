@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Collection, { CollectionProps } from "./Collection";
 import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
 import { scroll } from "scroll-polyfill";
-import { getChildVisibilityInParent } from "../../utils/DomUtils";
+import { getChildVisibilityInParent } from "../../utils/dom-utils";
 
 type FocusableCollectionProps = {
   focusKey: string;

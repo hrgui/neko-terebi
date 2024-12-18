@@ -12,7 +12,7 @@ import WatchlistPage from "@hrgui/neko-terebi-watchlist-page";
 import HomePage from "@hrgui/neko-terebi-home-page";
 
 import { createRootRoute, createRoute, redirect } from "@tanstack/react-router";
-import { wait } from "../../utils/WaitUtils";
+import { wait } from "@hrgui/neko-terebi-wait-utils";
 
 const rootRoute = createRootRoute({
   component: Root,

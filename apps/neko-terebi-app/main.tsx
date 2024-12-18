@@ -5,13 +5,13 @@ import ScrollPolyfill from "scroll-polyfill";
 
 ScrollPolyfill({ force: true });
 
-import { init as setupApiEdaClient } from "../../packages/client/ApiClient/index.ts";
+import { init as setupApiEdaClient } from "../../packages/client/api-client/index.ts";
 import { StrictMode } from "react";
 import { Container, createRoot } from "react-dom/client";
 import "./index.css";
 
 import { init as setupSpatialNavigation } from "@hrgui/spatial-navigation-core";
-import { createAppRouter } from "@hrgui/neko-terebi-app-router/createRouter";
+import { createAppRouter } from "../../packages/router/app-router/createRouter.tsx";
 import { RouterProvider } from "@tanstack/react-router";
 import App from "./App.tsx";
 
