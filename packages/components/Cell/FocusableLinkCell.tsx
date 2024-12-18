@@ -74,7 +74,6 @@ const FocusableLinkCell = ({
 
     const currentElement = ref.current as HTMLElement;
     const parentEl = currentElement.parentNode as HTMLElement;
-    //const rect = currentElement.getBoundingClientRect();
 
     if (isInViewport(currentElement)) {
       return;

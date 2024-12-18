@@ -6,16 +6,20 @@ export interface FocusableLinkProps {
   focusKey?: string;
   focusClassName?: string;
   className?: string;
+  style?: any;
+  onFocus?: any;
 }
 
 export function FocusableLink({
   focusKey,
   focusClassName,
   className,
+  onFocus,
   ...props
 }: LinkProps & FocusableLinkProps) {
   const { ref, focused } = useFocusable({
     focusKey: focusKey,
+    onFocus,
     onEnterPress: () => {
       const currentEl = ref.current as HTMLElement;
 

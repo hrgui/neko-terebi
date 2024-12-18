@@ -61,7 +61,6 @@ const BrowseGrid = () => {
           return (
             <div
               key={virtualRow.index}
-              className={virtualRow.index % 2 ? "ListItemOdd" : "ListItemEven"}
               style={{
                 position: "absolute",
                 top: 0,
