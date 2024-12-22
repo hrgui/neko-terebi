@@ -36,7 +36,6 @@ const BrowseGrid = () => {
         height: `${window.innerHeight}px`,
         width: `${window.innerWidth}px`,
         overflow: "auto",
-        paddingLeft: 160,
         paddingTop: 40,
       }}
     >

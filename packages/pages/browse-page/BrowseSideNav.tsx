@@ -48,7 +48,7 @@ const BrowseSideNav = ({ filters, categories }: Props) => {
           ref={ref2}
           style={{
             position: "relative",
-            left: isNavFocused ? 160 : 0,
+            left: 0,
             width: !isNavFocused ? 0 : undefined,
             height: `${window.innerHeight}px`,
             overflow: "auto",
