@@ -48,13 +48,13 @@ const GlobalNav = () => {
         ref={ref}
         className={twMerge(
           "relative flex flex-shrink-0 flex-col text-cta font-semibold h-full @asvw:mr-[40px] @asvw:pt-[40px] @asvw:pb-[40px] @asvw:pl-[40px] z-10 bg-black-fade",
-          !isFocused ? "@asvw:w-[84px]" : "@asvw:w-[510px] bg-gray-900/100 @asvw:pr-[40px]"
+          !isFocused ? "@asvw:w-[84px]" : "@asvw:w-[510px] bg-gray-900 @asvw:pr-[40px]"
         )}
       >
         <FocusableLink
           to="/home"
           className="flex items-center @asvw:h-[72px] mb-auto w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
+          focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">account_circle</span>
           {isFocused && <span>User</span>}
@@ -64,7 +64,7 @@ const GlobalNav = () => {
           focusKey="global-nav-search"
           to="/search"
           className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
+          focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">search</span>
           {isFocused && <span>Search</span>}
@@ -73,7 +73,7 @@ const GlobalNav = () => {
           focusKey="global-nav-home"
           to="/home"
           className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
+          focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">home</span>
           {isFocused && <span>Home</span>}
@@ -82,7 +82,7 @@ const GlobalNav = () => {
           focusKey="global-nav-watchlist"
           to="/watchlist"
           className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
+          focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">subscriptions</span>
           {isFocused && <span>Watchlist</span>}
@@ -91,7 +91,7 @@ const GlobalNav = () => {
           focusKey="global-nav-history"
           to="/history"
           className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
+          focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">search_activity</span>
           {isFocused && <span>History</span>}
@@ -100,7 +100,7 @@ const GlobalNav = () => {
           focusKey="global-nav-browse"
           to="/browse"
           className="flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
+          focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">web</span>
           {isFocused && <span>Browse</span>}
@@ -110,7 +110,7 @@ const GlobalNav = () => {
           focusKey="global-nav-settings"
           to="/settings"
           className="mt-auto flex items-center @asvw:h-[72px] w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-          focusClassName="bg-primary/100"
+          focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">settings</span>
           {isFocused && <span>Settings</span>}

@@ -15,7 +15,7 @@ const Cell = forwardRef<HTMLDivElement, CellProps>(
       <div ref={ref} className={twMerge("@asvw:w-[528px] flex-shrink-0", className)} {...rest}>
         <div
           className={twMerge(
-            "w-full @asvw:h-[297px] bg-gray-700/100 @asvw:rounded-[26.4px]",
+            "w-full @asvw:h-[297px] bg-gray-700 @asvw:rounded-[26.4px]",
             focused ? "outline-cell" : ""
           )}
           style={{
@@ -27,23 +27,16 @@ const Cell = forwardRef<HTMLDivElement, CellProps>(
         ></div>
         <div className="w-full  @asvw:mt-[16px]">
           <div
-            className={`${twMerge(
-              "font-semibold text-gray-400/100",
-              focused && "text-gray-200/100"
-            )}
+            className={`${twMerge("font-semibold text-gray-400", focused && "text-gray-200")}
             text-cta
             `}
           >
             {header1}
           </div>
-          <div
-            className={twMerge("font-semibold text-gray-500/100", focused && "text-gray-300/100")}
-          >
+          <div className={twMerge("font-semibold text-gray-500", focused && "text-gray-300")}>
             {header2}
           </div>
-          <div
-            className={twMerge("font-semibold text-gray-500/100", focused && "text-gray-300/100")}
-          >
+          <div className={twMerge("font-semibold text-gray-500", focused && "text-gray-300")}>
             {header3}
           </div>
         </div>

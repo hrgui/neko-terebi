@@ -76,16 +76,4 @@ Allows the user to search
 
 ## Tailwind
 
-All colors from tailwind needs to use `/100` to it. Otherwise, it will not render properly due to the use of --tw-bg-opacity
-
-### Good
-
-```
-bg-black/100
-```
-
-### Bad
-
-```
-bg-black
-```
+`postcss-var-replace` was used to deal with the fact that Chromium 47 (Tizen 3) does not support CSS Variables.

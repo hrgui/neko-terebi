@@ -67,7 +67,7 @@ const BrowseSideNav = ({ filters, categories }: Props) => {
               <FocusableLink
                 focusKey={`browse-${currentType}-${currentItem.id}`}
                 className="flex items-center text-cta @asvw:h-[72px] mb-auto w-full  @asvw:p-[16px] @asvw:rounded-[10px]"
-                focusClassName="bg-primary/100"
+                focusClassName="bg-primary"
                 to="/browse"
                 key={virtualRow.index}
                 onFocus={() => {

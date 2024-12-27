@@ -23,8 +23,8 @@ export default function ErrorPage(props: ErrorComponentProps) {
         <button
           className={
             focused
-              ? "bg-white/100 text-black/100 text-cta rounded-full @asvw:w-[628px] @asvw:p-[16px]"
-              : "bg-gray-800/100 text-white/100 text-cta rounded-full @asvw:w-[628px] @asvw:p-[16px]"
+              ? "bg-white text-black text-cta rounded-full @asvw:w-[628px] @asvw:p-[16px]"
+              : "bg-gray-800 text-white text-cta rounded-full @asvw:w-[628px] @asvw:p-[16px]"
           }
           ref={ref}
           onClick={props.reset}
