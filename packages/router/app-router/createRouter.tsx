@@ -1,9 +1,9 @@
 import { createHashHistory, createRouter } from "@tanstack/react-router";
-import { routeTree } from "./createRouteTree";
+import { RouterContext, routeTree } from "./createRouteTree";
 
-export function createAppRouter() {
+export function createAppRouter(context: RouterContext) {
   const hashHistory = createHashHistory();
-  return createRouter({ history: hashHistory, routeTree });
+  return createRouter({ history: hashHistory, routeTree, context });
 }
 
 declare module "@tanstack/react-router" {

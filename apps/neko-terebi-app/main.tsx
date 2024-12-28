@@ -26,10 +26,10 @@ export function bootstrap(el: Container) {
     visualDebug: import.meta.env.VITE_TEREBI_SPATIAL_NAV_VISUAL_DEBUG === "1",
     useGetBoundingClientRect: true,
   });
-  const router = createAppRouter();
+  const router = createAppRouter({ auth, queryClient });
   createRoot(el).render(
     <StrictMode>
-      <App routerProvider={<RouterProvider context={{ auth, queryClient }} router={router} />} />
+      <App routerProvider={<RouterProvider router={router} />} />
     </StrictMode>
   );
 }

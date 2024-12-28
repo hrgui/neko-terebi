@@ -16,7 +16,7 @@ import { fetchAsEventsToPromise } from "@hrgui/neko-terebi-api-eda-client/fetchA
 import { Session } from "@hrgui/neko-terebi-api-eda-client/types";
 import { QueryClient } from "@tanstack/react-query";
 
-type Auth = {
+export type RouterAuth = {
   data?: Session;
   resolved?: boolean;
   loader: () => Promise<Session>;
@@ -25,7 +25,12 @@ type Auth = {
   startLoading: () => Promise<Session>;
 };
 
-export const auth: Auth = {
+export type RouterContext = {
+  auth: RouterAuth;
+  queryClient: QueryClient;
+};
+
+export const auth: RouterAuth = {
   resolved: false,
   loader: async () => {
     const data = await fetchAsEventsToPromise({
@@ -52,10 +57,7 @@ export const auth: Auth = {
   },
 };
 
-const rootRoute = createRootRouteWithContext<{
-  auth: Auth;
-  queryClient: QueryClient;
-}>()({
+const rootRoute = createRootRouteWithContext<RouterContext>()({
   component: Root,
   errorComponent: ErrorPage,
   loader: async ({ context }) => {
