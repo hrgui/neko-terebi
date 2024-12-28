@@ -31,7 +31,7 @@ const BrowseGrid = () => {
   return (
     <div
       ref={ref}
-      className="List"
+      className="no-scrollbar"
       style={{
         height: `${window.innerHeight}px`,
         width: `${window.innerWidth}px`,

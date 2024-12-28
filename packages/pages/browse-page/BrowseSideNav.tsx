@@ -44,7 +44,7 @@ const BrowseSideNav = ({ filters, categories }: Props) => {
     <div className="flex relative">
       <FocusContext.Provider value={focusKey}>
         <div
-          className="flex-shrink-0  @asvw:w-[420px]"
+          className="flex-shrink-0  @asvw:w-[420px] no-scrollbar"
           ref={ref2}
           style={{
             position: "relative",
