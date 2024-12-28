@@ -1,0 +1,6 @@
+{
+  "name": "@hrgui/neko-terebi-mock-eda-client",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./index.ts"
+}

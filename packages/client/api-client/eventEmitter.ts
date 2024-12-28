@@ -1,5 +1,9 @@
-import EventEmitter from "events";
+const eventEmitter = new EventTarget();
 
-const eventEmitter = new EventEmitter();
+export const activeRequests = new Map<string, AbortController>();
+
+export function deleteActiveRequest(id: string) {
+  activeRequests.delete(id);
+}
 
 export default eventEmitter;

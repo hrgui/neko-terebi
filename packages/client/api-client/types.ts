@@ -1,4 +1,4 @@
-export type Benefit = [{ benefit: string }];
+export type Benefit = { benefit: string };
 
 export interface Profile {
   profileId: string;
@@ -7,6 +7,7 @@ export interface Profile {
 export interface Session {
   accountId: string;
   profileId: string;
+  username?: string;
   activeProfile: Profile;
   profiles: Profile[];
   benefits: Benefit[];
