@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "../../queries/query-client/queryClient";
+import { queryClient } from "@hrgui/neko-terebi-query-client";
 
 export type Props = {
   children?: React.ReactNode;

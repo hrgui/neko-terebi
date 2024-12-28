@@ -11,13 +11,22 @@ import SettingsPage from "@hrgui/neko-terebi-settings-page";
 import WatchlistPage from "@hrgui/neko-terebi-watchlist-page";
 import HomePage from "@hrgui/neko-terebi-home-page";
 
-import { createRootRoute, createRoute, redirect } from "@tanstack/react-router";
+import { createRootRouteWithContext, createRoute, redirect } from "@tanstack/react-router";
 import { fetchAsEventsToPromise } from "@hrgui/neko-terebi-api-eda-client/fetchAsEventsToPromise";
 import { Session } from "@hrgui/neko-terebi-api-eda-client/types";
+import { QueryClient } from "@tanstack/react-query";
 
-const rootRoute = createRootRoute({
-  component: Root,
-  errorComponent: ErrorPage,
+type Auth = {
+  data?: Session;
+  resolved?: boolean;
+  loader: () => Promise<Session>;
+  invalidate: () => void;
+  loaderPromise?: Promise<Session>;
+  startLoading: () => Promise<Session>;
+};
+
+export const auth: Auth = {
+  resolved: false,
   loader: async () => {
     const data = await fetchAsEventsToPromise({
       id: "session",
@@ -27,19 +36,47 @@ const rootRoute = createRootRoute({
       cancelEventName: "session/cancel",
       requestParams: {},
     });
-
-    console.log("this is my data", data);
-
+    auth.data = data as Session;
+    auth.resolved = true;
     return data as Session;
+  },
+  startLoading: async () => {
+    const promise = auth.loader();
+    auth.loaderPromise = promise;
+    const res = await auth.loaderPromise;
+    return res;
+  },
+  invalidate: () => {
+    auth.resolved = false;
+    auth.data = undefined;
+  },
+};
+
+const rootRoute = createRootRouteWithContext<{
+  auth: Auth;
+  queryClient: QueryClient;
+}>()({
+  component: Root,
+  errorComponent: ErrorPage,
+  loader: async ({ context }) => {
+    if (context.auth.resolved) {
+      return context.auth.data;
+    } else {
+      return context.auth.startLoading();
+    }
   },
 });
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
-  loader: (params) => {
-    if (params.route.path === "/") {
+  loader: async (params) => {
+    await params.context.auth.loaderPromise;
+    const sessionData = params.context.auth.data;
+    if (!sessionData && params.route.path === "/") {
       throw redirect({ to: "/welcome" });
+    } else {
+      throw redirect({ to: "/home" });
     }
   },
 });

@@ -13,9 +13,11 @@ import { Container, createRoot } from "react-dom/client";
 import "./index.css";
 
 import { init as setupSpatialNavigation } from "@hrgui/spatial-navigation-core";
-import { createAppRouter } from "../../packages/router/app-router/createRouter.tsx";
 import { RouterProvider } from "@tanstack/react-router";
 import App from "./App.tsx";
+import { createAppRouter } from "@hrgui/neko-terebi-app-router/createRouter";
+import { auth } from "@hrgui/neko-terebi-app-router/createRouteTree";
+import { queryClient } from "@hrgui/neko-terebi-query-client";
 
 export function bootstrap(el: Container) {
   setupApiEdaClient(eventBus);
@@ -27,7 +29,7 @@ export function bootstrap(el: Container) {
   const router = createAppRouter();
   createRoot(el).render(
     <StrictMode>
-      <App routerProvider={<RouterProvider router={router} />} />
+      <App routerProvider={<RouterProvider context={{ auth, queryClient }} router={router} />} />
     </StrictMode>
   );
 }
