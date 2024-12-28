@@ -3,7 +3,7 @@ import { Session } from "@hrgui/neko-terebi-api-eda-client/types";
 export const premiumSession: Session = {
   accountId: "1",
   profileId: "1",
-  username: "premium",
+  username: "IAmUserPremium",
   activeProfile: { profileId: "1" },
   profiles: [{ profileId: "1" }],
   benefits: [{ benefit: "premium" }],
@@ -14,7 +14,7 @@ export const premiumSession: Session = {
 export const freeSession: Session = {
   accountId: "1",
   profileId: "1",
-  username: "free",
+  username: "IAmUserFree",
   activeProfile: { profileId: "1" },
   profiles: [{ profileId: "1" }],
   benefits: [],

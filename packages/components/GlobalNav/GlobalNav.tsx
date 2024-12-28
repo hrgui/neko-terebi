@@ -3,8 +3,9 @@ import { FocusableLink } from "../FocusableLink/FocusableLink";
 import { useFocusable, FocusContext } from "@hrgui/react-spatial-navigation";
 import { getPreviousFocusKey, setFocus } from "@hrgui/spatial-navigation-core";
 import { twMerge } from "tailwind-merge";
+import { Session } from "@hrgui/neko-terebi-api-eda-client/types";
 
-const GlobalNav = () => {
+const GlobalNav = ({ sessionData }: { sessionData: Session }) => {
   const [lastFocusedKeyBeforeMenu, setLastFocusedKeyBeforeMenu] = useState<string | null>(null);
   const onDidNotNavigate = useCallback(
     (_: any, props: any) => {
@@ -57,7 +58,7 @@ const GlobalNav = () => {
           focusClassName="bg-primary"
         >
           <span className="material-symbols-outlined @asvw:mr-[10px]">account_circle</span>
-          {isFocused && <span>User</span>}
+          {isFocused && <span>{sessionData.username || "User"}</span>}
         </FocusableLink>
 
         <FocusableLink

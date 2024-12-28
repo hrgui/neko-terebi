@@ -13,6 +13,7 @@ import HomePage from "@hrgui/neko-terebi-home-page";
 
 import { createRootRoute, createRoute, redirect } from "@tanstack/react-router";
 import { fetchAsEventsToPromise } from "@hrgui/neko-terebi-api-eda-client/fetchAsEventsToPromise";
+import { Session } from "@hrgui/neko-terebi-api-eda-client/types";
 
 const rootRoute = createRootRoute({
   component: Root,
@@ -29,7 +30,7 @@ const rootRoute = createRootRoute({
 
     console.log("this is my data", data);
 
-    return data;
+    return data as Session;
   },
 });
 
