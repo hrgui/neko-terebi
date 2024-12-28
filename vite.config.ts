@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import legacy from "@vitejs/plugin-legacy";
 
@@ -10,10 +10,5 @@ export default defineConfig({
       targets: ["defaults", "chrome >= 47"],
     }),
   ],
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: ["./setupTests.ts"],
-  },
   base: "./",
 });
