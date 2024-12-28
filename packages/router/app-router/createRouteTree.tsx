@@ -12,10 +12,25 @@ import WatchlistPage from "@hrgui/neko-terebi-watchlist-page";
 import HomePage from "@hrgui/neko-terebi-home-page";
 
 import { createRootRoute, createRoute, redirect } from "@tanstack/react-router";
+import { fetchAsEventsToPromise } from "@hrgui/neko-terebi-api-eda-client/fetchAsEventsToPromise";
 
 const rootRoute = createRootRoute({
   component: Root,
   errorComponent: ErrorPage,
+  loader: async () => {
+    const data = await fetchAsEventsToPromise({
+      id: "session",
+      requestEventName: "session/request",
+      responseEventName: "session/response",
+      errorEventName: "session/error",
+      cancelEventName: "session/cancel",
+      requestParams: {},
+    });
+
+    console.log("this is my data", data);
+
+    return data;
+  },
 });
 
 const indexRoute = createRoute({
