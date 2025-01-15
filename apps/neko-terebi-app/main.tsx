@@ -1,3 +1,5 @@
+import "event-target-polyfill";
+
 import eventBus from "@hrgui/neko-terebi-api-eda-client/eventEmitter";
 
 // to get @tanstack/react-query to work
@@ -5,7 +7,6 @@ import "./polyfills/patchHeaders.ts";
 import "abortcontroller-polyfill";
 import ScrollPolyfill from "scroll-polyfill";
 ScrollPolyfill({ force: true });
-import "event-target-polyfill";
 
 import { init as setupApiEdaClient } from "@hrgui/neko-terebi-mock-eda-client";
 import { StrictMode } from "react";
